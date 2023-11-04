@@ -10,14 +10,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulir Pendaftaran</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #c850c0, #4158d0);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            width: 60%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-btn {
+            text-align: center;
+        }
+        .alert {
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-desc {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #555;
+        }
+        .accessory {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .accessory img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
+    <div class="accessory">
+            <img src="logo.png" alt="Accessories 1">       </div>
+        <h2>Register Your Account </h2>
+        <p class="form-desc">Isi informasi di bawah ini untuk mendaftar</p>
         <?php
         if (isset($_POST["submit"])) {
             $fullName = $_POST["fullname"];
@@ -77,24 +131,22 @@
         ?>
         <form action="register.php" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap:">
+                <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email:">
+                <input type="email" class="form-control" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Kata Sandi:">
+                <input type="password" class="form-control" name="password" placeholder="Kata Sandi">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="repeat_password" placeholder="Ulangi Kata Sandi:">
+                <input type="password" class="form-control" name="repeat_password" placeholder="Ulangi Kata Sandi">
             </div>
             <div class="form-btn">
                 <input type="submit" class="btn btn-primary" value="Daftar" name="submit">
             </div>
         </form>
-        <div>
-            <p>Sudah terdaftar? <a href="login.php">Masuk di sini</a></p>
-        </div>
+        <p style="text-align: center; margin-top: 20px;">Sudah terdaftar? <a href="login.php">Masuk di sini</a></p>
     </div>
 </body>
 </html>
