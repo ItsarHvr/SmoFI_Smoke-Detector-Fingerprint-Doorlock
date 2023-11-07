@@ -1,7 +1,7 @@
 #include <Adafruit_Fingerprint.h>
 
 #if (defined(__AVR__) || defined(ESP8266)) && !defined(__AVR_ATmega2560__)
-SoftwareSerial mySerial(2, 3);
+SoftwareSerial mySerial(D2, D3);
 
 #else
 #define mySerial Serial1
@@ -14,7 +14,7 @@ uint8_t id;
 void setup()
 {
   Serial.begin(9600);
-  while (!Serial);  // For Yun/Leo/Micro/Zero/...
+  while (!Serial);
   delay(100);
   Serial.println("\n\nAdafruit Fingerprint sensor enrollment");
 
@@ -49,7 +49,7 @@ uint8_t readnumber(void) {
   return num;
 }
 
-void loop()                     // run over and over again
+void loop()
 {
   Serial.println("Ready to enroll a fingerprint!");
   Serial.println("Please type in the ID # (from 1 to 127) you want to save this finger as...");
