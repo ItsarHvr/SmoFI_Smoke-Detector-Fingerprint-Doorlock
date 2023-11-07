@@ -44,7 +44,8 @@
       }
       
     ?>
-      <img src="pnj.png" alt="Kampus Logo" class="kampus-logo" style="width: 100px;">
+      <img src="pnj.png" alt="Kampus Logo" class="logo" style="width: 60px;">
+      <img src="logo.png" alt="Kampus Logo" class="logo2" style="width: 80px;">
       <form class="login-form" method="post" action="login.php">
         <h2>Smart Door Lock and Smoke Detector System</h2>
         <input type="text" name="email" placeholder="Email" class="login-input">
