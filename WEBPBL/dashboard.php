@@ -18,7 +18,7 @@ if (!isset($_SESSION["user"])) {
   </header>
   <div class="container">
     <div class="device">
-      <img src="door.jpg" alt="Smart Door Lock">
+      <a href="log_akses.html"> <img src="door.jpg" alt="Smart Door Lock"> </a>
       <h2>Smart Door Lock</h2>
       <p>Monitor and control your door lock remotely with our smart lock technology.</p>
     </div>
