@@ -27,6 +27,11 @@ if (!isset($_SESSION["user"])) {
       <h2>Smoke Detector</h2>
       <p>Get real-time alerts about smoke or fire in your home with our smart smoke detector.</p>
     </div>
+    <div class="device">
+      <img src="lock.png" alt="Smoke Detector">
+      <h2>Lock Unlock</h2>
+      <p>Get real-time alerts about smoke or fire in your home with our smart smoke detector.</p>
+    </div>
   </div>
   <footer>
     &copy; 2023 Smart Home Solutions
