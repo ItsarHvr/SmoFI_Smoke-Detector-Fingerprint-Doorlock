@@ -19,17 +19,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 80vh;
             background: linear-gradient(135deg, #c850c0, #4158d0);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .container {
-            width: 60%;
-            max-width: 500px;
-            padding: 30px;
+            width: 6000%;
+            max-width: 400px;
+            padding: 40px;
             border-radius: 10px;
             background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
         }
         .form-group {
             margin-bottom: 20px;
