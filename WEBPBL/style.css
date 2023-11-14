@@ -1,0 +1,99 @@
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(135deg, #4a90e2, #8e3f95);
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  margin: 60px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.device {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.device img {
+  max-width: 100%;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.device h2 {
+  font-size: 28px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.device p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+footer {
+  background: linear-gradient(135deg, #4a90e2, #8e3f95);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+/* Hover effect for devices */
+.device:hover {
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
