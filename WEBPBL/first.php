@@ -18,10 +18,9 @@
   <div class="container">
     <div class="welcome-box">
       <h1> SMART SPIRIT SECURITY SYSTEM </h1>
-      <p> Ciptakan Kampus yang Aman dan Bebas Bahaya dengan Solusi Teknologi Mutakhir!</p>
-      
+      <p> Ciptakan Kampus yang Aman dan Bebas Bahaya dengan Solusi Teknologi Mutakhir!</p> 
     </div>
-    <div class="product-box">
+    <div class="product-box">   
         <h3>Our Products</h3>
         <p>Keamanan Tak Tertandingi, Akses Hanya di Ujung Jari!</p>
       </div>
