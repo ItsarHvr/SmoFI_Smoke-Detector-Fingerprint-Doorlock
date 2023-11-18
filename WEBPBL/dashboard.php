@@ -53,7 +53,7 @@
     </div>
 
     <footer>
-        &copy; 2023 Smart Home Solutions
+        &copy; 2023 Smart Class Kelompok 3
     </footer>
 
     <script>
