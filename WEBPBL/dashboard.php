@@ -46,7 +46,7 @@
             <p>Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus </p>
         </div>
         <div class="device">
-            <img src="lock.png" alt="Lock Unlock">
+            <a href="lockunlock.html"><img src="lock.png" alt="Lock Unlock"></a>
             <h2>Lock & Unlock</h2>
             <p>Akses buka dan kunci pintu melalui website khusus Admin </p>
         </div>
