@@ -47,18 +47,18 @@
     <div class="container">
         <div class="device">
             <a href="log_akses.html"> <img src="door.jpg" alt="Smart Door Lock"> </a>
-            <h2>Smart Door Lock</h2>
-            <p>Monitor and control your door lock remotely with our smart lock technology.</p>
+            <h2>Smart Door Lock </h2>
+            <p>Buka dan kunci pintu dengan mudah hanya dengan sidik jari</p>
         </div>
         <div class="device">
             <img src="smoke.jpg" alt="Smoke Detector">
             <h2>Smoke Detector</h2>
-            <p>Get real-time alerts about smoke or fire in your home with our smart smoke detector.</p>
+            <p>Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus </p>
         </div>
         <div class="device">
             <img src="lock.png" alt="Lock Unlock">
-            <h2>Lock Unlock</h2>
-            <p>Get real-time alerts about smoke or fire in your home with our smart smoke detector.</p>
+            <h2>Lock & Unlock</h2>
+            <p>Akses buka dan kunci pintu melalui website khusus Admin</p>
         </div>
     </div>
 
