@@ -24,7 +24,7 @@
             <?php
             session_start();
             if (isset($_SESSION["full_name"])) {
-                echo "Welcome, " . $_SESSION["full_name"] . "!";
+                echo "Welcome, " . $_SESSION["full_name"];
             }
             ?>
             <form method="post" action="login.php">

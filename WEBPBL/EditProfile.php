@@ -72,5 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Save Changes</button>
     </form>
+    <form action="profile.php" method="get">
+    <button type="submit">Profile</button>
+  </form>
+  <form action="dashboard.php" method="get">
+    <button type="submit">Home</button>
+  </form>
 </body>
 </html>

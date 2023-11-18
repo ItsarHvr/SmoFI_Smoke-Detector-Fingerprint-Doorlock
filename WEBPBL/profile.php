@@ -40,6 +40,11 @@ if ($userData) {
   <p><strong>Full Name:</strong> <?php echo $fullName; ?></p>
   <p><strong>Email:</strong> <?php echo $email; ?></p>
   <p><strong>Password Length:</strong> <?php echo $passwordLength; ?> characters</p>
-  <!-- Tambahkan elemen HTML atau tautan lain sesuai kebutuhan -->
+  <form action="EditProfile.php" method="get">
+    <button type="submit">Edit Profile</button>
+  </form>
+  <form action="dashboard.php" method="get">
+    <button type="submit">Home</button>
+  </form>
 </body>
 </html>
