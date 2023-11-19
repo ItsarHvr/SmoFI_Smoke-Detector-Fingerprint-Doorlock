@@ -20,6 +20,7 @@ $userData = $userProfile->getUserData();
 if ($userData) {
     $fullName = $userData["full_name"];
     $email = $userData["email"];
+    $alamat = $userData["alamat"];
     // Password tidak boleh ditampilkan secara langsung, jadi kita hanya menampilkan panjangnya
     $passwordLength = strlen($userData["password"]);
 } else {
@@ -86,6 +87,7 @@ if ($userData) {
     <img src="ava.jpg" alt="User Avatar" style="width: 200px; height: 200px; border: 1px solid gray;">
     <p><strong>Full Name:</strong> <?php echo $fullName; ?></p>
     <p><strong>Email:</strong> <?php echo $email; ?></p>
+    <p><strong>Alamat:</strong> <?php echo $alamat; ?></p>
     <p><strong>Password Length:</strong> <?php echo $passwordLength; ?> characters</p>
     <form action="EditProfile.php" method="get">
       <button type="submit">Edit Profil</button>

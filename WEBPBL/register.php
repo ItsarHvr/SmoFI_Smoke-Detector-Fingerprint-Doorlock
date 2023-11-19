@@ -77,7 +77,7 @@ class UserRegistration
         $this->db = $db;
     }
 
-    public function registerUser($fullName, $email, $password, $passwordRepeat)
+    public function registerUser($fullName, $email, $alamat, $password, $passwordRepeat)
     {
         $conn = $this->db->getConnection();
 
@@ -111,11 +111,11 @@ class UserRegistration
             }
 
             if (empty($errors)) {
-                $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO users (full_name, email, alamat, password) VALUES (?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
 
                 if ($stmt) {
-                    $stmt->bind_param("sss", $fullName, $email, $passwordHash);
+                    $stmt->bind_param("ssss", $fullName, $email, $alamat, $passwordHash);
                     $stmt->execute();
                     echo "<div class='alert alert-success'>Anda telah berhasil terdaftar.</div>";
                 } else {
@@ -136,10 +136,11 @@ $userRegistration = new UserRegistration($db);
 if (isset($_POST["submit"])) {
     $fullName = trim($_POST["fullname"]);
     $email = trim($_POST["email"]);
+    $alamat = trim($_POST["alamat"]);
     $password = $_POST["password"];
     $passwordRepeat = $_POST["repeat_password"];
 
-    $userRegistration->registerUser($fullName, $email, $password, $passwordRepeat);
+    $userRegistration->registerUser($fullName, $email, $alamat, $password, $passwordRepeat);
 }
 
 ?>
@@ -151,6 +152,9 @@ if (isset($_POST["submit"])) {
             </div>
             <div class="form-group">
                 <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="alamat" placeholder="Alamat">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" name="password" placeholder="Kata Sandi">
