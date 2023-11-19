@@ -20,7 +20,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-		/* toggle in label designing */
 		.toggle {
 			position : relative ;
 			display : inline-block;
@@ -31,7 +30,6 @@
 			border: 2px solid gray;
 		}
 			
-		/* After slide changes */
 		.toggle:after {
 			content: '';
 			position: absolute;
@@ -43,27 +41,37 @@
 			left: 1px;
 			transition: all 0.5s;
 		}
-			
-		/* Toggle text */
 		p {
 			font-family: Arial, Helvetica, sans-serif;
 			font-weight: bold;
 		}
 			
-		/* Checkbox checked effect */
 		.checkbox:checked + .toggle::after {
 			left : 52px; 
 		}
 			
-		/* Checkbox checked toggle label bg color */
 		.checkbox:checked + .toggle {
 			background-color: rgb(64, 218, 64);
 		}
 			
-		/* Checkbox vanished */
+
 		.checkbox { 
 			display : none;
 		}
+		button {
+            background-color: rgb(193, 89, 207);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(167, 58, 182);
+        }
 	</style>
 </head>
 
@@ -84,6 +92,9 @@
 			</p>
 		</label>
 	</center>
+	<form action="dashboard.php" method="get">
+		<button type="submit">Kembali ke Beranda </button>
+	</form>
 </div>
 </body>
 </html>
