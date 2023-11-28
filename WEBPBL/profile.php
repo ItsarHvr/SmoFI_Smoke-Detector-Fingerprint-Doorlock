@@ -53,7 +53,7 @@ if ($userData) {
       padding: 60px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      text-align: left;
     }
 
     h1 {
@@ -84,11 +84,9 @@ if ($userData) {
 <body>
   <div class="profile-container">
     <h1>Profil Saya</h1>
-    <img src="ava.jpg" alt="User Avatar" style="width: 200px; height: 200px; border: 1px solid gray;">
     <p><strong>Full Name:</strong> <?php echo $fullName; ?></p>
     <p><strong>Email:</strong> <?php echo $email; ?></p>
     <p><strong>Alamat:</strong> <?php echo $alamat; ?></p>
-    <p><strong>Password Length:</strong> <?php echo $passwordLength; ?> characters</p>
     <form action="EditProfile.php" method="get">
       <button type="submit">Edit Profil</button>
     </form>
