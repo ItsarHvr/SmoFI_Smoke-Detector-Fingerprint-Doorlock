@@ -78,7 +78,7 @@ if (isset($_POST["login"])) {
       <p class="register-link">Don't have an account? <a href="register.php">Sign up</a></p>
     </div>
     <div class="decoration-container">
-      <!-- Masukkan hiasan cantik di sini -->
+     
     </div>
   </div>
 </body>

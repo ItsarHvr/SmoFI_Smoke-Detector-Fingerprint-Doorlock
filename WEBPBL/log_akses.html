@@ -48,6 +48,20 @@
             right: 240px;
             z-index: 1;
         }
+        button {
+            background-color: rgb(193, 89, 207);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(167, 58, 182);
+        }
     </style>
 </head>
 <body>
@@ -64,24 +78,28 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td>2023-11-01</td>
-                <td>08:30:00</td>
-                <td>Masuk</td>
+                <td>2023-09-13</td>
+                <td>09:40:00</td>
+                <td>Masuk Kelas</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>2023-11-02</td>
-                <td>12:45:00</td>
-                <td>Keluar</td>
+                <td>2023-09-13</td>
+                <td>11:35:00</td>
+                <td>Keluar Kelas</td>
             </tr>
             <tr>
                 <td>3</td>
-                <td>2023-11-03</td>
-                <td>17:20:00</td>
-                <td>Masuk</td>
+                <td>2023-09-13</td>
+                <td>14:32:00</td>
+                <td>Masuk Kelas</td>
             </tr>
-            <!-- Add more rows as needed -->
         </table>
+        <br>
+        <form action="dashboard.php" method="get">
+            <button type="submit">Kembali ke Beranda </button>
+        </form>
     </div>
+    
 </body>
 </html>
