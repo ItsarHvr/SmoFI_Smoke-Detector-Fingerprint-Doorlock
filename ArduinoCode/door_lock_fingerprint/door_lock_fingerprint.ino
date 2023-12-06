@@ -1,70 +1,94 @@
+#define BLYNK_PRINT Serial
+#define BLYNK_TEMPLATE_ID "TMPL6yJ-L0He1"
+#define BLYNK_TEMPLATE_NAME "LockUnlock"
+#define BLYNK_AUTH_TOKEN "FW8bkb47oM0_1vXkcszj62ZFF1ISNYKK"
+#define WIFI_SSID "Smartfren 2rb/Gb"
+#define WIFI_PASS "123443211234"
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
 #include <Adafruit_Fingerprint.h>
-#include <SoftwareSerial.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-// For UNO and others without hardware serial, we must use software serial...
-SoftwareSerial mySerial(2, 3); // RX, TX
+// For ESP8266, SoftwareSerial is not needed as it has hardware serial
+Adafruit_Fingerprint finger = Adafruit_Fingerprint(&Serial);
 
-Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
-
-LiquidCrystal_I2C lcd(0x27, 16, 2);  // Alamat I2C LCD (0x27 adalah umumnya digunakan)
+LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address 0x27 is commonly used
 
 bool lastState = -1;
-int relay1 = A0;
+int relay1 = D0; // Use the appropriate GPIO pin for your ESP8266
 
-void setup()  
+BlynkTimer timer;
+
+BLYNK_WRITE(V1)
 {
+    int pinValue = param.asInt();
+    digitalWrite(relay1, pinValue);
+}
+
+void setup()
+{
+    Serial.begin(9600);
+    Blynk.begin(BLYNK_AUTH_TOKEN, WIFI_SSID, WIFI_PASS);
     pinMode(relay1, OUTPUT);
     digitalWrite(relay1, HIGH);
 
-    lcd.init();                      // Inisialisasi LCD I2C
     lcd.init();
-    lcd.backlight();                // Nyalakan latar belakang LCD
+    lcd.backlight();
 
-    Serial.begin(9600);
-    while (!Serial);  // For Yun/Leo/Micro/Zero/...
-    delay(100);
     Serial.println("\n\nAdafruit finger detect test");
-
-    // Set the data rate for the sensor serial port
     finger.begin(57600);
 
-    if (finger.verifyPassword()) {
+    if (finger.verifyPassword())
+    {
         Serial.println("Found fingerprint sensor!");
-    } else {
+    }
+    else
+    {
         Serial.println("Did not find fingerprint sensor :(");
-        while (1) { delay(1); }
+        while (1)
+        {
+            delay(1);
+        }
     }
 
     finger.getTemplateCount();
-    Serial.print("Sensor contains "); Serial.print(finger.templateCount); Serial.println(" templates");
-    Serial.println("Waiting for valid finger...");
+    Serial.print("Sensor contains ");
+    Serial.print(finger.templateCount);
+    Serial.println(" templates");
+    Serial.println("Waiting for a valid finger...");
 
     displayWaitFinger();
 }
 
-void loop()                     
-{ 
+void loop()
+{
+    Blynk.run();
+    timer.run();
+
     int id;
     id = getFingerprintIDez();
-    if (id == -1) {
-        if (lastState == 0) {
+    if (id == -1)
+    {
+        if (lastState == 0)
+        {
             lastState = -1;
             displayInvalidFinger();
             delay(2000);
             displayWaitFinger();
         }
     }
-    else if (id != -1) {
+    else if (id != -1)
+    {
         digitalWrite(relay1, LOW);
         displayFingerOK();
         delay(2000);
         displayWaitFinger();
         digitalWrite(relay1, HIGH);
     }
-    delay(50);  // Don't need to run this at full speed.
+    delay(50);
 }
+
 
 uint8_t getFingerprintID() {
     uint8_t p = finger.getImage();

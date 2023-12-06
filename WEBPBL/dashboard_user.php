@@ -36,7 +36,7 @@
 
     <div class="container">
         <div class="device">
-            <a href="log_akses.html"> <img src="door.jpg" alt="Smart Door Lock"> </a>
+            <a href="log_akses_user.php"> <img src="door.jpg" alt="Smart Door Lock"> </a>
             <h2>Smart Door Lock</h2>
             <p>Buka dan kunci pintu dengan mudah hanya dengan sidik jari </p>
         </div>

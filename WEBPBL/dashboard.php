@@ -36,7 +36,7 @@
 
     <div class="container">
         <div class="device">
-            <a href="log_akses.html"> <img src="door.jpg" alt="Smart Door Lock"> </a>
+            <a href="log_akses_admin.php"> <img src="door.jpg" alt="Smart Door Lock"> </a>
             <h2>Smart Door Lock</h2>
             <p>Buka dan kunci pintu dengan mudah hanya dengan sidik jari </p>
         </div>
@@ -46,7 +46,7 @@
             <p>Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus </p>
         </div>
         <div class="device">
-            <a href="lockunlock.html"><img src="lock.png" alt="Lock Unlock"></a>
+            <a href="lockunlock.php"><img src="lock.png" alt="Lock Unlock"></a>
             <h2>Lock & Unlock</h2>
             <p>Akses buka dan kunci pintu melalui website khusus Admin </p>
         </div>
