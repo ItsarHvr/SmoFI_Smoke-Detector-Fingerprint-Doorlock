@@ -2,10 +2,11 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WebServer.h>
 
-const char* ssid = "Redmi 9C";
-const char* password = "1dua3empat5enam";
+const char* ssid = "Ammar Ihsan";
+const char* password = "12345678";
 
-const char* serverAddress = "192.168.43.127";
+const char* serverAddress = "http://192.168.75.172";
+
 const int serverPort = 80;
 
 ESP8266WebServer server(80);
@@ -56,7 +57,7 @@ void sendPostRequest() {
   HTTPClient http;
   WiFiClient client;
 
-  String url = String(serverAddress) + "/php/terima.php";
+  String url = String(serverAddress) + "/terima.php";
 
   Serial.print("Connecting to: ");
   Serial.println(url);
@@ -64,9 +65,9 @@ void sendPostRequest() {
   if (http.begin(client, url)) {
     Serial.println("HTTP connection established");
 
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded"); // Ganti tipe konten
 
-    String postMessage = "message=hello world";
+    String postMessage = "message=hello world"; // Sesuaikan dengan format x-www-form-urlencoded
 
     int httpResponseCode = http.POST(postMessage);
 
@@ -95,4 +96,5 @@ void sendPostRequest() {
     Serial.println("HTTP connection failed");
   }
 }
+
 
