@@ -8,7 +8,7 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
-  background-image: url('wall2.jpg'); /* Ganti dengan URL gambar latar belakang yang diinginkan */
+  background: linear-gradient(135deg, #000000, #4b0082, #ff69b4, #0000cd);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -53,29 +53,40 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    color: rgb(242, 196, 230);
+    padding: 2px;
+    margin-top: 70px;
+    color: rgb(247, 203, 235);
   }
   
   .product-box {
+    display: flex; 
+    justify-content: space-between;
     background-color: rgba(234, 162, 244, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     padding: 20px;
     margin-top: 40px;
-    color: rgb(243, 230, 230);
+    color: rgb(247, 203, 235);
+  }
+  
+  .product-box .left-box {
+    flex: 1;
+  }
+  
+  .product-box .right-box {
+    flex: 1;
+    margin-left: 20px; 
   }
   
   .image-gallery {
-    display: flex;
-    justify-content: center;
     margin-top: 40px;
+    text-align: center; 
   }
   
   .image-gallery img {
     max-width: 200px;
-    margin: 0 10px;
+    max-height: 200px;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }

@@ -1,11 +1,3 @@
-<?php
-// session_start();
-// if (isset($_SESSION["user"])) {
-//     header("Location: dashboard.php");
-//     exit();
-// }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,62 +65,86 @@
         <h2>Register Your Account </h2>
         <p class="form-desc">Isi informasi di bawah ini untuk mendaftar</p>
         <?php
-        if (isset($_POST["submit"])) {
-            $fullName = $_POST["fullname"];
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $passwordRepeat = $_POST["repeat_password"];
 
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+require_once "database.php"; // Make sure to include this file for database connection
 
-            $errors = array();
+class UserRegistration
+{
+    private $db;
 
-            if (empty($fullName) || empty($email) || empty($password) || empty($passwordRepeat)) {
-                array_push($errors, "Semua kolom harus diisi");
+    public function __construct(Database $db)
+    {
+        $this->db = $db;
+    }
+
+    public function registerUser($fullName, $email, $password, $passwordRepeat)
+    {
+        $conn = $this->db->getConnection();
+
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+        $errors = [];
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Email tidak valid";
+        }
+
+        if (strlen($password) < 8) {
+            $errors[] = "Password harus minimal 8 karakter";
+        }
+
+        if ($password !== $passwordRepeat) {
+            $errors[] = "Password tidak cocok";
+        }
+
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $rowCount = $result->num_rows;
+
+            if ($rowCount > 0) {
+                $errors[] = "Email sudah digunakan!";
             }
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                array_push($errors, "Email tidak valid");
-            }
-            if (strlen($password) < 8) {
-                array_push($errors, "Password harus minimal 8 karakter");
-            }
-            if ($password !== $passwordRepeat) {
-                array_push($errors, "Password tidak cocok");
-            }
 
-            require_once "database.php";
-            $sql = "SELECT * FROM users WHERE email = ?";
-            $stmt = mysqli_stmt_init($conn);
+            if (empty($errors)) {
+                $sql = "INSERT INTO users (full_name, email, alamat, password) VALUES (?, ?, ?)";
+                $stmt = $conn->prepare($sql);
 
-            if (mysqli_stmt_prepare($stmt, $sql)) {
-                mysqli_stmt_bind_param($stmt, "s", $email);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-                $rowCount = mysqli_num_rows($result);
-
-                if ($rowCount > 0) {
-                    array_push($errors, "Email sudah digunakan!");
-                }
-
-                if (count($errors) > 0) {
-                    foreach ($errors as  $error) {
-                        echo "<div class='alert alert-danger'>$error</div>";
-                    }
+                if ($stmt) {
+                    $stmt->bind_param("sss", $fullName, $email, $passwordHash);
+                    $stmt->execute();
+                    echo "<div class='alert alert-success'>Anda telah berhasil terdaftar.</div>";
                 } else {
-                    $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
-                    $stmt = mysqli_stmt_init($conn);
-
-                    if (mysqli_stmt_prepare($stmt, $sql)) {
-                        mysqli_stmt_bind_param($stmt, "sss", $fullName, $email, $passwordHash);
-                        mysqli_stmt_execute($stmt);
-                        echo "<div class='alert alert-success'>Anda telah berhasil terdaftar.</div>";
-                    } else {
-                        die("Terjadi kesalahan");
-                    }
+                    die("Terjadi kesalahan");
+                }
+            } else {
+                foreach ($errors as $error) {
+                    echo "<div class='alert alert-danger'>$error</div>";
                 }
             }
         }
-        ?>
+    }
+}
+
+$db = new Database();
+$userRegistration = new UserRegistration($db);
+
+if (isset($_POST["submit"])) {
+    $fullName = trim($_POST["fullname"]);
+    $email = trim($_POST["email"]);
+    $password = $_POST["password"];
+    $passwordRepeat = $_POST["repeat_password"];
+
+    $userRegistration->registerUser($fullName, $email, $password, $passwordRepeat);
+}
+
+?>
+
+
         <form action="register.php" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap">
