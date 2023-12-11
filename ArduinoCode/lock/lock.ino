@@ -2,11 +2,11 @@
 #include <ESP8266HTTPClient.h>
 
 // Ganti dengan SSID dan password WiFi Anda
-const char *ssid = "ASARM Family";
-const char *password = "17121997";
+const char *ssid = "Your SSID";
+const char *password = "SSID Pass";
 
 // Ganti dengan URL endpoint yang ingin Anda akses
-const char *url = "http://192.168.100.223/lockunlock/lock/baca_relay.php";
+const char *url = "http://IP/lockunlock/lock/baca_relay.php";
 
 #define pin_relay 5 //pin GPIO5 = D1
 
