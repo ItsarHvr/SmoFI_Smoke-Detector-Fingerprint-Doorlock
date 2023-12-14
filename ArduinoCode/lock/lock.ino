@@ -2,11 +2,11 @@
 #include <ESP8266HTTPClient.h>
 
 // Ganti dengan SSID dan password WiFi Anda
-const char *ssid = "Your SSID";
-const char *password = "SSID Pass";
+const char *ssid = "SSID";
+const char *password = "SSID Password";
 
 // Ganti dengan URL endpoint yang ingin Anda akses
-const char *url = "http://IP/lockunlock/lock/baca_relay.php";
+const char *url = "http://Your IP Address/Your file PBL taro dimana/ArduinoCode/lock/baca_relay.php";
 
 #define pin_relay 5 //pin GPIO5 = D1
 
@@ -48,8 +48,9 @@ void loop() {
   if (httpCode > 0) {
     payload = http.getString();
     Serial.println(payload);
+    
     //ubah status relay di nodemcu
-    digitalWrite(pin_relay, payload.toInt());
+    digitalWrite(pin_relay, (payload.toInt() == 1) ? LOW : HIGH);
   } else {
     Serial.println("HTTP request failed");
     Serial.println(http.errorToString(httpCode).c_str());
@@ -59,5 +60,5 @@ void loop() {
   http.end();
 
   // Tambahkan delay sesuai kebutuhan
-  delay(5000); // Contoh delay 5 detik (5000 milidetik)
+  delay(1000); // Contoh delay 5 detik (5000 milidetik)
 }
