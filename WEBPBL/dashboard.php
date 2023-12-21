@@ -17,7 +17,7 @@
 
     <div class="menu" id="menu">
       <a href="javascript:void(0);" onclick="openPopup()">
-      <img src="ava.jpg" alt="User Avatar" style="width: 50px; height: 50px; border-radius: 50%;"><div class="user-info">
+      <img src="ava.jpg" alt="User Avatar" style="width: 50px; height: 50px; border-radius: 50%; cursor:default;"><div class="user-info">
             <?php
             session_start();
             if (isset($_SESSION["full_name"])) {
@@ -46,7 +46,7 @@
             <p>Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus </p>
         </div>
         <div class="device">
-            <a href="lockunlock.html"><img src="lock.png" alt="Lock Unlock"></a>
+            <a href="enroll.html"><img src="lock.png" alt="Lock Unlock"></a>
             <h2>Lock & Unlock</h2>
             <p>Akses buka dan kunci pintu melalui website khusus Admin </p>
         </div>
@@ -65,9 +65,6 @@
         menu.style.display = "none";
       }
     }
-    function openPopup() {
-    document.getElementById("profilPopup").style.display = "block";
-  }
 
   function confirmLogout() {
     var isLogoutConfirmed = confirm("Apakah Anda yakin untuk logout?");

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <title>Access Control & Smoke Detector Login</title>
   <link rel="stylesheet" type="text/css" href="stylelogin.css">
 </head>
@@ -61,24 +62,51 @@ if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $userLogin->loginUser($email, $password);
+    // Verifikasi CAPTCHA
+    $recaptcha_secret = "6LfAoS8pAAAAAKmJ3bu_qY6EK59eQJ5shrqVFtrO";
+    $recaptcha_response = $_POST["g-recaptcha-response"];
+    $url = "https://www.google.com/recaptcha/api/siteverify";
+    $data = [
+        "secret" => $recaptcha_secret,
+        "response" => $recaptcha_response,
+    ];
+
+    $options = [
+        "http" => [
+            "header" => "Content-type: application/x-www-form-urlencoded\r\n",
+            "method" => "POST",
+            "content" => http_build_query($data),
+        ],
+    ];
+
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $json = json_decode($result, true);
+
+    if ($json["success"]) {
+        // CAPTCHA valid, lanjutkan proses login
+        $userLogin->loginUser($email, $password);
+    } else {
+        echo "<div class='alert alert-danger'>CAPTCHA verification failed</div>";
+    }
 }
 
 ?>
 
-      <img src="pnj.png" alt="Kampus Logo" class="logo" style="width: 60px;">
+<img src="pnj.png" alt="Kampus Logo" class="logo" style="width: 60px;">
       <img src="logo.png" alt="Kampus Logo" class="logo2" style="width: 80px;">
       <form class="login-form" method="post" action="login.php">
         <h2>Smart Door Lock and Smoke Detector System</h2>
         <input type="text" name="email" placeholder="Email" class="login-input">
         <input type="password" name="password" placeholder="Password" class="login-input">
+        <div class="g-recaptcha" data-sitekey="6LfAoS8pAAAAAOYhceD9lmpqes_Cq5_YCl4insyI"></div>
         <button type="submit" name="login" class="login-button">Login</button>
       </form>
+
       <br>
       <p class="register-link">Don't have an account? <a href="register.php">Sign up</a></p>
     </div>
     <div class="decoration-container">
-     
     </div>
   </div>
 </body>
