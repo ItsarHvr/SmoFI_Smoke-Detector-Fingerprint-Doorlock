@@ -35,7 +35,7 @@
             <input type="submit" class="btn btn-primary" value="Daftar" name="submit">
         </div>
 </form>
-<p style="text-align: center; margin-top: 20px;">Sudah terdaftar? <a href="login.php">Masuk di sini</a></p>
+<p style="text-align: center; margin-top: 20px;">Sudah terdaftar? <a href="{{ route('user.login') }}">Masuk di sini</a></p>
 </div>
 </body>
 </html>
