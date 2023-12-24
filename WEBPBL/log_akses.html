@@ -11,14 +11,26 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #c850c0, #4158d0);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            justify-content: flex;
+            align-items: flex;
             margin: 0;
         }
         .container {
             width: 60%;
-            margin-top: 10px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .lockunlock {
+            position: fixed;
+            right: 30px;
+            z-index: 1;
+            width: 30%;
+            margin-top: 30px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -27,7 +39,7 @@
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #ffffff;
+            color :black;
         }
         table {
             width: 100%;
@@ -62,13 +74,64 @@
         button:hover {
             background-color: rgb(167, 58, 182);
         }
-    </style>
+        .toggle {
+			position : relative ;
+			display : inline-block;
+			width : 101px;
+			height : 52px;
+			background-color: rgb(229, 81, 81);
+			border-radius: 50px;
+			border: 2px solid gray;
+		}
+			
+		.toggle:after {
+			content: '';
+            position: absolute;
+			width: 50px;
+			height: 100%;
+			border-radius: 50%;
+			background-color: rgb(182, 171, 171);
+			top: 1px; 
+			left: 1px;
+			transition: all 0.5s;
+		}
+		p {
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+		}
+			
+		.checkbox:checked + .toggle::after {
+			left : 52px; 
+		}
+			
+		.checkbox:checked + .toggle {
+			background-color: rgb(64, 218, 64);
+		}
+			
+
+		.checkbox { 
+			display : none;
+		}
+		button {
+            background-color: rgb(193, 89, 207);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(167, 58, 182);
+        }
+	</style>
 </head>
 <body>
     <div class="container">
         <img class="logo" src="logo.png" alt="Logo" width="100" height="100">
         <h1> Log Access</h1>
-        <h2>Logs Access - Smart Door Lock</h2>
         <table>
             <tr>
                 <th>ID Fingerprint</th>
@@ -94,12 +157,66 @@
                 <td>14:32:00</td>
                 <td>Masuk Kelas</td>
             </tr>
+            <tr>
+                <td>1</td>
+                <td>2023-09-13</td>
+                <td>09:40:00</td>
+                <td>Masuk Kelas</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2023-09-13</td>
+                <td>11:35:00</td>
+                <td>Keluar Kelas</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>2023-09-13</td>
+                <td>14:32:00</td>
+                <td>Masuk Kelas</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2023-09-13</td>
+                <td>09:40:00</td>
+                <td>Masuk Kelas</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2023-09-13</td>
+                <td>11:35:00</td>
+                <td>Keluar Kelas</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>2023-09-13</td>
+                <td>14:32:00</td>
+                <td>Masuk Kelas</td>
+            </tr>
         </table>
         <br>
         <form action="dashboard.php" method="get">
             <button type="submit">Kembali ke Beranda </button>
         </form>
     </div>
+
+    <div class="lockunlock">
+       <h2> Lock & Unlock Smart Door </h2>
+        <br>
+        <center>
+		<input type="checkbox"
+			id="switch"
+			class="checkbox" />
+				
+		<label for="switch"
+			class="toggle">
+			<p>
+			Kunci Buka
+			</p>
+		</label>
+	</center>
+	<form action="dashboard.php" method="get"></form>
+</div>
     
 </body>
 </html>
