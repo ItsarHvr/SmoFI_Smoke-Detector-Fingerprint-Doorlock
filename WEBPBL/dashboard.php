@@ -46,9 +46,9 @@
             <p>Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus </p>
         </div>
         <div class="device">
-            <a href="enroll.html"><img src="lock.png" alt="Lock Unlock"></a>
-            <h2>Lock & Unlock</h2>
-            <p>Akses buka dan kunci pintu melalui website khusus Admin </p>
+            <a href="enroll.html"><img src="sidik.png" alt="Lock Unlock"></a>
+            <h2>Enroll Fingerprint</h2>
+            <p>Daftarkan fingerprintmu untuk mengakses pintu </p>
         </div>
     </div>
 
