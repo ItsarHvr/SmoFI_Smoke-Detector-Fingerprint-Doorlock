@@ -19,7 +19,7 @@ $relayState = 0;
 $sql = "SELECT relay FROM door WHERE id = 1";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
+if ($result !== false && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $relayState = $row["relay"];
 }
@@ -43,12 +43,9 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Door Lock</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,50 +66,59 @@ $conn->close();
             padding: 20px;
         }
 
-        /* toggle in label designing */
-        .toggle-button {
+        .toggle {
             position: relative;
             display: inline-block;
             width: 102px;
             height: 52px;
             border-radius: 30px;
             border: 2px solid gray;
-            overflow: hidden;
-            margin-right: 20px;
+            background-color: <?php echo $relayState == 1 ? 'rgb(64, 218, 64)' : 'rgb(229, 81, 81)'; ?>;
         }
 
-        /* After slide changes */
-        .toggle-button:after {
+        .toggle:after {
             content: '';
             position: absolute;
             width: 50px;
             height: 50px;
             border-radius: 50%;
+            background-color: rgb(182, 171, 171);
             top: 1px;
             left: 1px;
             transition: all 0.5s;
         }
 
-        /* Toggle text */
         p {
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
-            color: black; /* Set text color to black */
+            color: #000;
         }
 
-        /* Checkbox checked effect */
-        .checkbox:checked + .toggle-button::after {
+        .checkbox:checked + .toggle::after {
             left: 52px;
         }
 
-        /* Checkbox checked toggle label bg color */
-        .checkbox:checked + .toggle-button {
-            background-color: <?php echo $relayState == 1 ? 'rgb(229, 81, 81)' : 'rgb(64, 218, 64)'; ?>;
+        .checkbox:checked + .toggle {
+            background-color: rgb(64, 218, 64);
         }
 
-        /* Checkbox vanished */
         .checkbox {
             display: none;
+        }
+
+        button {
+            background-color: rgb(193, 89, 207);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(167, 58, 182);
         }
     </style>
 </head>
@@ -126,14 +132,19 @@ $conn->close();
             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <input type="hidden" name="switch" value="0">
                 <input type="checkbox" id="switch" class="checkbox" name="switch" <?php echo $relayState == 1 ? 'checked' : ''; ?> onchange="this.form.submit()">
-                <label for="switch" class="toggle-button">
+                <label for="switch" class="toggle">
                     <p>
-                        <?php echo $relayState == 0 ? 'Unlock' : 'Lock'; ?>
+                        <?php echo $relayState == 0 ? 'Kunci Buka' : 'Kunci Tutup'; ?>
                     </p>
                 </label>
+            </form>
+            <form action="dashboard.php" method="get">
+                <button type="submit">Kembali ke Beranda</button>
             </form>
         </center>
     </div>
 </body>
-
 </html>
+
+
+
