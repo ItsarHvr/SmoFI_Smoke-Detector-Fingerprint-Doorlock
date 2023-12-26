@@ -5,12 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\RelayStatus;
 use Illuminate\Http\Request;
 use PhpMqtt\Client\Facades\MQTT;
-use Illuminate\Support\Facades\Log;
-use PhpMqtt\Client\Exceptions\ConnectException;
-use PhpMqtt\Client\Exceptions\ConnectionException;
-use PhpMqtt\Client\Exceptions\ProtocolNotSupportedException;
-use PhpMqtt\Client\Exceptions\PublishException;
-use PhpMqtt\Client\Exceptions\SubscribeException;
 
 class RelayController extends Controller
 {
@@ -24,11 +18,11 @@ class RelayController extends Controller
     public function perbaruiStatusRelay(Request $request)
     {
         $statusRelay = ($request->input('switch') == 'on') ? 1 : 0;
-        RelayStatus::create(['status' => $statusRelay]);
 
+        // Publish the status to the MQTT broker
         $this->publishToMqtt($statusRelay);
 
-        $this->cleanupDatabase();
+        RelayStatus::create(['status' => $statusRelay]);
 
         return redirect()->route('relay.status');
     }
@@ -53,21 +47,7 @@ class RelayController extends Controller
         // Publish the status to the specified topic
         $mqtt->publish('relay/status', json_encode(['statusRelay' => $statusRelay]));
 
-        
-    }
-    private function cleanupDatabase()
-    {
-        $recordCount = RelayStatus::count();
-
-        // Define the maximum number of records to keep (e.g., 50)
-        $maxRecords = 50;
-
-        if ($recordCount > $maxRecords) {
-            // Calculate how many records to delete
-            $recordsToDelete = $recordCount - $maxRecords;
-
-            // Delete the oldest records
-            RelayStatus::oldest()->take($recordsToDelete)->delete();
-        }
+        // Disconnect from the MQTT broker
+        $mqtt->disconnect();
     }
 }

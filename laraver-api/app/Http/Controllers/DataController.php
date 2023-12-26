@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataUserProfile;
 use App\Models\DataUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +41,7 @@ class DataController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('user/index');
+            return redirect()->intended('user/dashboard');
         }
 
         return redirect()->route('user.login')->with('error', 'Invalid credentials. Please try again.');
@@ -50,7 +49,7 @@ class DataController extends Controller
 
     public function index()
     {
-    return view('user.index');
+    return view('user.dashboard');
     }
 
     public function profile()

@@ -4,12 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\RelayController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\SiswaController;
+
+Route::post('/input-data', [SiswaController::class, 'inputData']);
+Route::get('/input-data', [SiswaController::class, 'view']);
 
 Route::get('/user/create', [DataController::class, 'create'])->name('user.create');
 Route::post('/user/store', [DataController::class, 'store'])->name('user.store');
 Route::get('/user/login', [DataController::class, 'login'])->name('user.login');
 Route::post('/user/in', [DataController::class, 'authenticate'])->name('user.in');
-Route::get('/user/index', [DataController::class, 'index'])->name('user.index');
+Route::get('/user/dashboard', [DataController::class, 'index'])->name('user.dashboard');
 Route::match(['get', 'post'], '/user/logout', [DataController::class, 'logout'])->name('user.logout');
 
 Route::middleware(['auth'])->group(function () {

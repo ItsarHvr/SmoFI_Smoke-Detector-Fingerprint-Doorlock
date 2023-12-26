@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('relay_status', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('status')->default(0);
+        Schema::create('log_accesses', function (Blueprint $table) {
+            $table->integer('fingerprint_id');
+            $table->string('access');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('relay_status');
+        Schema::dropIfExists('log_accesses');
     }
 };

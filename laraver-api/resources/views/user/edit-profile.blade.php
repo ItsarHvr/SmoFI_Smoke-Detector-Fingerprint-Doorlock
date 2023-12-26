@@ -101,7 +101,7 @@
 
         <br>
 
-        <form action="{{ route('user.index') }}" method="get">
+        <form action="{{ route('user.dashboard') }}" method="get">
             <button type="submit">Kembali ke Beranda </button>
         </form>
     </div>

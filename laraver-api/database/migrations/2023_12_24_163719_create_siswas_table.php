@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('relay_status', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('status')->default(0);
+        Schema::create('siswas', function (Blueprint $table) {
+            $table->integer('id')->unique();
+            $table->string('nama');
+            $table->string('kelas');
+            $table->string('nim');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('relay_status');
+        Schema::dropIfExists('siswas');
     }
 };
