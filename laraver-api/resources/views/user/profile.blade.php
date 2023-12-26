@@ -58,7 +58,7 @@
     <form action="{{ route('user.edit.profile') }}" method="get">
       <button type="submit">Edit Profil</button>
     </form>
-    <form action="{{ route('user.index') }}" method="get">
+    <form action="{{ route('user.dashboard') }}" method="get">
       <button type="submit">Kembali ke Beranda</button>
     </form>
   </div>
