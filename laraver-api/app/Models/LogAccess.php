@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogAccess extends Model
 {
-    protected $fillable = ['mqtt_data'];
+    protected $fillable = ['fingerprint_id'];
     use HasFactory;
 }
+
