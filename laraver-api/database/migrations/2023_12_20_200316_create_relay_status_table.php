@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('relay_status', function (Blueprint $table) {
+            $table->id();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

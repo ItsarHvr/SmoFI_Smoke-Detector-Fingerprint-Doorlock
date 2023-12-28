@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Access Control & Smoke Detector Login</title>
-  <link rel="stylesheet" type="text/css" href="stylelogin.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/stylelogin.css') }}">
 </head>
 <body>
   <div class="login-container">

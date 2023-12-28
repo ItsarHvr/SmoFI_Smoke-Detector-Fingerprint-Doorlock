@@ -53,6 +53,7 @@ class RelayController extends Controller
         // Publish the status to the specified topic
         $mqtt->publish('relay/status', json_encode(['statusRelay' => $statusRelay]));
 
+        
     }
     private function cleanupDatabase()
     {
