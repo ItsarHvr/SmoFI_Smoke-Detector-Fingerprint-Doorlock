@@ -10,6 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -31,6 +32,9 @@
             <main>
                 {{ $slot }}
             </main>
+            <footer>
+        &copy; 2023 Smart Class Kelompok 3
+    </footer>
         </div>
     </body>
 </html>
