@@ -30,7 +30,7 @@
   align-items: center;
 }
 .device img {
-  max-width: 25%;
+  max-width: 15%;
   margin: 0 auto; /* Center the image horizontally */
   border: 5px solid #fff;
   border-radius: 50%;
@@ -65,7 +65,3 @@ footer {
   position: fixed;
   bottom: 0;
 }
-
-
-
-

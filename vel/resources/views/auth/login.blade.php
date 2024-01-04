@@ -1,5 +1,4 @@
 <!-- resources/views/login.blade.php -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +8,12 @@
 <body>
     <div class="login-container">
         <div class="login-content">
+
+            @if(session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
 
             @if(session('error'))
                 <div class="alert alert-danger">
@@ -21,6 +26,8 @@
             <form class="login-form" method="post" action="{{ url('/login') }}">
                 @csrf
                 <h2>Smart Door Lock and Smoke Detector System</h2>
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 <input type="text" name="email" placeholder="Email" class="login-input">
                 <input type="password" name="password" placeholder="Password" class="login-input">
                 <button type="submit" name="login" class="login-button">Login</button>
