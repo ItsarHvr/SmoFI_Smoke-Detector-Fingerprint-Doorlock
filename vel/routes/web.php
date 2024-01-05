@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll');
+    Route::get('/enroll', [EnrollController::class, 'index'])->middleware(['admin'])->name('enroll');;
 });
 
 
