@@ -8,7 +8,7 @@
     <div class="container mx-auto mt-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
             <div class="device">
-             <a href="log_akses.html">
+                <a href="{{ route('logs') }}">
                     <img src="{{ asset('logo/door.jpg') }}" alt="Smart Door Lock" class="w-full h-auto">
                 </a>
                 <h2 class="font-semibold text-center">Smart Door Lock</h2>
@@ -16,13 +16,15 @@
             </div>
 
             <div class="device">
-                <img src="{{ asset('logo/smoke.jpg') }}" alt="Smoke Detector" class="w-full h-auto">
+                <a href="{{ route('smoke') }}">
+                    <img src="{{ asset('logo/smoke.jpg') }}" alt="Smoke Detector" class="w-full h-auto">
+                </a>
                 <h2 class="font-semibold text-center">Smoke Detector</h2>
                 <p class="text-center">Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus</p>
             </div>
 
             <div class="device">
-                <a href="log_akses.html">
+            <a href="{{ route('enroll') }}">
                     <img src="{{ asset('logo/sidik.png') }}" alt="Enroll Fingerprint" class="w-full h-auto">
                 </a>
                 <h2 class="font-semibold text-center">Enroll Fingerprint</h2>

@@ -8,7 +8,7 @@
     <div class="container mx-auto mt-8">
         <div class="grid grid-cols-1 md:flex-col lg:flex-col gap-4">
             <div class="device">
-                <a href="log_akses.html">
+            <a href="{{ route('logs') }}">
                     <img src="{{ asset('logo/door.jpg') }}" alt="Smart Door Lock">
                 </a>
                 <h2 class="font-semibold text-center">Smart Door Lock</h2>
@@ -16,6 +16,7 @@
             </div>
 
             <div class="device">
+            <a href="{{ route('smoke') }}">
                 <img src="{{ asset('logo/smoke.jpg') }}" alt="Smoke Detector">
                 <h2 class="font-semibold text-center">Smoke Detector</h2>
                 <p class="text-center">Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus</p>
