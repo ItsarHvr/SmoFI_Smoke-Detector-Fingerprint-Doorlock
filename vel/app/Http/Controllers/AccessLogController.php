@@ -7,7 +7,12 @@ use App\Models\AccessLog;
 use Illuminate\Http\Request;
 
 class AccessLogController extends Controller
-{
+{   
+    public function index()
+    {
+        return view('logs');
+    }
+
     public function logAccess(Request $request)
     {
         $fingerprintId = $request->input('fingerprintID');

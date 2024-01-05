@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AccessLogController;
+use App\Http\Controllers\SmokeDetectorController;
+use App\Http\Controllers\EnrollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +38,20 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/door', [DoorController::class, 'index'])->middleware(['admin'])->name('door');
     Route::post('/door/update', [DoorController::class, 'update'])->name('door.update');
+    
+
+    Route::get('/logs', [AccessLogController::class, 'index'])->name('logs');
+
+
+
+    Route::get('/smoke', [SmokeDetectorController::class, 'index'])->name('smoke');
+
+
+
+
+    Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll');
 });
+
 
 
 
