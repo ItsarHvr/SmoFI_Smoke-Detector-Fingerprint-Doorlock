@@ -13,7 +13,7 @@
         <h1>Logs Access - Smart Door Lock</h1>
         <table>
             <tr>
-                <th>Email</th>
+                <th>Nama</th>
                 <th>ID Fingerprint</th>
                 <th>Tanggal</th>
                 <th>Waktu</th>

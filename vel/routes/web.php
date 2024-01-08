@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccessLogController;
 use App\Http\Controllers\SmokeDetectorController;
 use App\Http\Controllers\EnrollController;
+use App\Http\Controllers\GasReadingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/smoke', [SmokeDetectorController::class, 'index'])->name('smoke');
+    Route::get('/insert-reading', [SmokeDetectorController::class, 'insertReading']);
 
 
 
