@@ -21,10 +21,27 @@ class UserListController extends Controller
         return view('userlistEdit', compact('user'));
     }
 	
-	public function update(Request $request, $id)
-{
-    // Update user logic here
-}
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'fingerprint_id' => 'nullable|string|max:255',
+            // Tambahkan validasi sesuai kebutuhan lainnya
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'fingerprint_id' => $request->input('fingerprint_id'),
+            // Tambahkan kolom lain sesuai kebutuhan
+        ]);
+
+        return redirect()->route('userlist.index')->with('status', 'User updated successfully');
+    }
+
 
 
     public function destroy($id)
