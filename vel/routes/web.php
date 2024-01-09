@@ -7,11 +7,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccessLogController;
 use App\Http\Controllers\SmokeDetectorController;
 use App\Http\Controllers\EnrollController;
+use App\Http\Controllers\UserListController;
 
 /*
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
@@ -52,6 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/enroll', [EnrollController::class, 'index'])->middleware(['admin'])->name('enroll');;
 });
 
-
+Route::middleware(['auth', 'admin'])->group(function () {
+Route::get('/userlist', [UserListController::class, 'index'])->name('userlist');
+Route::get('/userlist/{id}/edit', [UserListController::class, 'edit'])->name('userlistEdit');
+Route::delete('/userlist/{id}', [UserListController::class, 'destroy'])->name('userlistDestroy');
+});
 
 
