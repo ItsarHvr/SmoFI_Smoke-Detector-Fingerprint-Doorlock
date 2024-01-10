@@ -1,11 +1,11 @@
+#include <SoftwareSerial.h>
+#include <Wire.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 #include <PubSubClient.h>
 #include <Adafruit_Fingerprint.h>
-#include <SoftwareSerial.h>
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
 
 const char* ssid = "Rumah ceria";
 const char* password = "Kikiisan21";
