@@ -12,11 +12,11 @@
         <br>
         <center>
             <img class="logo" src="{{ asset('logo/finger.png') }}" alt="Logo" width="150" height="150">
+            
             <form action="{{ url('home') }}" method="get">
                 <button type="submit">Submit Fingerprint</button>
             </form>
-            <br>
-            <button type="button" onclick="window.location.href='/home'" class="back-btn">Back to dashboard</button>
+            <button type="button" onclick="window.location.href='/userlist'" class="back-btn">Back to User List</button>
         </center>
     </div>
 </body>

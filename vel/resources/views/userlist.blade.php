@@ -28,6 +28,7 @@
                         <td>{{ $user->role }}</td>
 						<td>{{ $user->id_fingerprint}}</td>
                         <td>
+                        <a href="{{ route('enroll', $user->id) }}" class="btn btn-warning">Enroll</a>
                             <a href="{{ route('userlist.edit', $user->id) }}" class="btn btn-warning">Edit</a>
 
 							<form action="{{ route('userlist.destroy', $user->id) }}" method="post" class="d-inline">
