@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/insert-gas-reading', [SmokeDetectorController::class, 'insertGasReading']);
     
     Route::get('/enroll', [EnrollController::class, 'index'])->middleware(['admin'])->name('enroll');
+    Route::patch('/enroll/{id}', [EnrollControllerr::class, 'edit'])->middleware(['admin'])->name('enroll.edit');
+
+
     Route::get('/userlist', [UserListController::class, 'index'])->middleware(['admin'])->name('userlist.index');
     Route::get('/userlist/{id}/edit', [UserListController::class, 'edit'])->middleware(['admin'])->name('userlist.edit');
     Route::patch('/userlist/{id}', [UserListController::class, 'update'])->middleware(['admin'])->name('userlist.update');
