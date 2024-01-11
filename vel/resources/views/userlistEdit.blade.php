@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <title>Edit User - Smart Door Lock Using Fingerprint & Smoke Detector</title>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('User List Edit') }}
         </h2>
     </x-slot>
@@ -36,14 +37,9 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
                             </div>
 
-                            <div>
-                                <x-input-label for="id_fingerprint" :value="__('ID Fingerprint')" />
-                                <x-text-input id="id_fingerprint" name="id_fingerprint" type="text" class="mt-1 block w-full" :value="old('id_fingerprint', $user->id_fingerprint)" autocomplete="off" />
-                                <x-input-error class="mt-2" :messages="$errors->get('id_fingerprint')" />
-                            </div>
-
                             <div class="flex items-center gap-4">
                                 <x-primary-button>{{ __('Save') }}</x-primary-button>
+                                <x-primary-button>{{ __('userlist') }}</x-primary-button>
                             </div>
                         </form>
                     </section>

@@ -1,5 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
+    <link rel="stylesheet" type="text/css" href="css/styledashboard.css">
+    <title>Dashboard - Smart Door Lock Using Fingerprint & Smoke Detector</title>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Smart Door Lock & Smoke Detector') }}
         </h2>
@@ -40,4 +42,7 @@
             </div>
         </div>
     </div>
+    <footer>
+        &copy; 2023 Smart Class Kelompok 3
+    </footer>
 </x-app-layout>

@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+    <title>Edit Profile - Smart Door Lock Using Fingerprint & Smoke Detector</title>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
         </h2>

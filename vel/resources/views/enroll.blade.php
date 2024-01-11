@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Enroll Fingerprint</title>
+    <title>Enroll Fingerprint - Smart Door Lock Using Fingerprint & Smoke Detector</title>
     <link rel="stylesheet" href="{{ asset('css/styleenroll.css') }}">
 </head>
 
