@@ -32,15 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/smoke', [SmokeDetectorController::class, 'index'])->name('smoke');
     Route::post('/insert-gas-reading', [SmokeDetectorController::class, 'insertGasReading']);
     
-    Route::get('/enroll', [EnrollController::class, 'index'])->middleware(['admin'])->name('enroll');
-    Route::patch('/enroll/{id}', [EnrollControllerr::class, 'edit'])->middleware(['admin'])->name('enroll.edit');
-    
-    
-    Route::get('/enroll/{id}/edit', [UserListController::class, 'edit'])->middleware(['admin'])->name('enroll.edit');
-    Route::patch('/enroll/{id}', [UserListController::class, 'update'])->middleware(['admin'])->name('enroll.update');
-    Route::delete('/enroll/{id}', [UserListController::class, 'destroy'])->middleware(['admin'])->name('enroll.destroy');
+    Route::get('/enroll/{id}', [EnrollController::class, 'enroll'])->middleware(['admin'])->name('enroll.enroll');
 
-
+   
     Route::get('/userlist', [UserListController::class, 'index'])->middleware(['admin'])->name('userlist.index');
     Route::get('/userlist/{id}/edit', [UserListController::class, 'edit'])->middleware(['admin'])->name('userlist.edit');
     Route::patch('/userlist/{id}', [UserListController::class, 'update'])->middleware(['admin'])->name('userlist.update');

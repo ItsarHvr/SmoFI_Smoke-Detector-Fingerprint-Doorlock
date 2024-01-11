@@ -83,3 +83,9 @@ button:hover {
 .back-btn:hover {
     background-color: rgb(59, 134, 177);
 }
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
