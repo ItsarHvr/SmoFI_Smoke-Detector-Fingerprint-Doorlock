@@ -21,6 +21,7 @@
         </header>
 
         <form method="post" action="{{ route('userlistEdit', $user->id) }}" class="mt-6 space-y-6">
+        <form method="post" action="{{ route('userlist.update', $user->id) }}" class="mt-6 space-y-6">
             @csrf
             @method('patch')
 
@@ -37,8 +38,8 @@
             </div>
 
             <div>
-                <x-input-label for="fingerprint_id" :value="__('Fingerprint ID')" />
-                <x-text-input id="fingerprint_id" name="fingerprint_id" type="text" class="mt-1 block w-full" :value="old('fingerprint_id', $user->fingerprint_id)" autocomplete="off" />
+                <x-input-label for="id_fingerprint" :value="__('Fingerprint ID')" />
+                <x-text-input id="id_fingerprint" name="id_fingerprint" type="text" class="mt-1 block w-full" :value="old('id_fingerprint', $user->id_fingerprint)" autocomplete="off" />
                 <x-input-error class="mt-2" :messages="$errors->get('fingerprint_id')" />
             </div>
 
