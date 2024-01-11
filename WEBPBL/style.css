@@ -103,11 +103,11 @@ footer {
   position: absolute;
   top: 20px;
   left: 20px;
-  cursor: pointer;
+  cursor:pointer;
 }
 .menu-icon .bar {
   width: 35px;
-  height: 5px;
+  height: 4px;
   background-color: #f5f0f0;
   margin: 6px 0;
 }

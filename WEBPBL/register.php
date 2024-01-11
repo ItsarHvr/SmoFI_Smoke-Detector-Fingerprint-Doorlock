@@ -111,7 +111,7 @@ class UserRegistration
             }
 
             if (empty($errors)) {
-                $sql = "INSERT INTO users (full_name, email, alamat, password) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
                 $stmt = $conn->prepare($sql);
 
                 if ($stmt) {
