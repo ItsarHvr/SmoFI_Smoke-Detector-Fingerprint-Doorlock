@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Smoke Detector - Smart Door Lock Using Fingerprint & Smoke Detector</title>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/stylesmoke.css') }}">
