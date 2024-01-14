@@ -99,3 +99,23 @@ h2 {
   z-index: 1;
 }
 
+/* Media queries for smaller screens */
+@media only screen and (max-width: 600px) {
+  body {
+    background: linear-gradient(135deg, #ff9d6c, #bb85e4);
+  }
+
+  .login-container {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .decoration-container::before {
+    display: none;
+  }
+
+  .logo,
+  .logo2 {
+    display: none;
+  }
+}

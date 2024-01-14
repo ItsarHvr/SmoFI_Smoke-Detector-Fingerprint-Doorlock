@@ -34,7 +34,7 @@
             <input type="hidden" name="switch" value="{{ $relayState }}">
             
             <button type="button" id="toggleButton" class="toggle" onclick="toggleSwitch()">
-                <p>{{ $relayState == 0 ? 'ON' : 'OFF' }}</p>
+                <p>{{ $relayState == 0 ? 'UNLOCK' : 'LOCK' }}</p>
             </button>
 
             <script>
