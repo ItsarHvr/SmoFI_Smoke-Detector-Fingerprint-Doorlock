@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SmokeDetectorController extends Controller
+class GasReadingController extends Controller
 {
-    public function index()
-    {
-        return view('smoke');
-    }
-
     public function insertReading(Request $request)
     {
         $gasValue = $request->input('gas_value');

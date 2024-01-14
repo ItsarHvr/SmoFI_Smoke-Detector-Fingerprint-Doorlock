@@ -7,9 +7,9 @@
 #include <Adafruit_Fingerprint.h>
 #include <LiquidCrystal_I2C.h>
 
-const char* ssid = "Rumah ceria";
-const char* password = "Kikiisan21";
-const char* mqtt_server = "192.168.100.4";
+const char* ssid = "Smartfren 2rb/Gb";
+const char* password = "123443211234";
+const char* mqtt_server = "192.168.24.193";
 const int mqtt_port = 1883;
 const char* mqtt_username = "";
 const char* mqtt_password = "";
@@ -19,13 +19,15 @@ const char* enroll_topic = "EnrollID";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-SoftwareSerial mySerial(D2, D3); // RX, TX
+SoftwareSerial mySerial(D7, D8); // RX, TX
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 LiquidCrystal_I2C lcd(0x27, 16, 2);  // Alamat I2C LCD (0x27 adalah umumnya digunakan)
 
 bool lastState = -1;
 int relay1 = D0;
 int fingerID;
+int button = D4;
+int relayState = HIGH;
 
 void setup() {
   Serial.begin(115200);
@@ -47,6 +49,7 @@ void setup() {
 
   pinMode(relay1, OUTPUT);
   digitalWrite(relay1, HIGH);
+  pinMode(button, INPUT_PULLUP);
 
   lcd.init();
   lcd.backlight();
@@ -106,6 +109,20 @@ void loop() {
     delay(2000);
     displayWaitFinger();
     digitalWrite(relay1, HIGH);
+  }
+
+  int buttonState = digitalRead(button); // read new state
+
+  if (buttonState == LOW) {
+    // Change the state of the relay
+    if (relayState == HIGH) {
+      relayState = LOW;
+    } else {
+      relayState = HIGH;
+    }
+
+    digitalWrite(relay1, relayState);
+    delay(1000);
   }
 
   delay(50);

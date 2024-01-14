@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>User List - Smart Door Lock Using Fingerprint & Smoke Detector</title>
 <head>
-<<<<<<< HEAD
-=======
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
->>>>>>> 2d6c8992a81715ce498280f5ce32890671ed848d
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/stylesmoke.css') }}">
 </head>
@@ -31,10 +29,7 @@
                         <td>{{ $user->role }}</td>
 						<td>{{ $user->id_fingerprint}}</td>
                         <td>
-						
-                            <a href="{{ route('userlistEdit', $user->id) }}" class="btn btn-warning">Edit</a>
 
-							<form action="{{ route('userlist', $user->id) }}" method="post" class="d-inline">
                             <a href="{{ route('userlist.edit', $user->id) }}" class="btn btn-warning">Edit</a>
 
 							<form action="{{ route('userlist.destroy', $user->id) }}" method="post" class="d-inline">

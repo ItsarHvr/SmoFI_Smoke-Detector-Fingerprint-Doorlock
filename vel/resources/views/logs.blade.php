@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logs Access - Smart Door Lock</title>
+    <title>Logs Access - Smart Door Lock Using Fingerprint & Smoke Detector</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/stylelogakses.css') }}">
 </head>
@@ -13,7 +13,7 @@
         <h1>Logs Access - Smart Door Lock</h1>
         <table>
             <tr>
-                <th>Email</th>
+                <th>Nama</th>
                 <th>ID Fingerprint</th>
                 <th>Tanggal</th>
                 <th>Waktu</th>

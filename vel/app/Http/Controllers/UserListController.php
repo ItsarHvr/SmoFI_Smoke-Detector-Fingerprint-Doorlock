@@ -20,19 +20,14 @@ class UserListController extends Controller
         $user = User::findOrFail($id);
         return view('userlistEdit', compact('user'));
     }
-	
-	public function update(Request $request, $id)
-{
-    // Update user logic here
-}
-=======
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'fingerprint_id' => 'nullable|string|max:255',
-            // Tambahkan validasi sesuai kebutuhan lainnya
+            'id_fingerprint' => 'nullable|integer|max:255',
+            // Add other validation rules as needed
         ]);
 
         $user = User::findOrFail($id);
@@ -41,20 +36,17 @@ class UserListController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'id_fingerprint' => $request->input('id_fingerprint'),
-            // Tambahkan kolom lain sesuai kebutuhan
+
         ]);
 
         return redirect()->route('userlist.index')->with('status', 'User updated successfully');
     }
-
-
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
 
-        return Redirect::route('userlist.index')
-            ->with('status', 'User deleted successfully');
+        return redirect()->route('userlist.index')->with('status', 'User deleted successfully');
     }
 }
