@@ -20,7 +20,7 @@ class UserListController extends Controller
         $user = User::findOrFail($id);
         return view('userlistEdit', compact('user'));
     }
-    
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -36,7 +36,7 @@ class UserListController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'id_fingerprint' => $request->input('id_fingerprint'),
-            // Add other columns as needed
+
         ]);
 
         return redirect()->route('userlist.index')->with('status', 'User updated successfully');

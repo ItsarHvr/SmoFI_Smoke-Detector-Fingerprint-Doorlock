@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/logs', [AccessLogController::class, 'index'])->name('logs');
 
 
-
     Route::get('/smoke', [SmokeDetectorController::class, 'index'])->name('smoke');
     Route::get('/insert-reading', [SmokeDetectorController::class, 'insertReading']);
 
@@ -38,11 +37,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/userlist/{id}/edit', [UserListController::class, 'edit'])->middleware(['admin'])->name('userlist.edit');
     Route::patch('/userlist/{id}', [UserListController::class, 'update'])->middleware(['admin'])->name('userlist.update');
     Route::delete('/userlist/{id}', [UserListController::class, 'destroy'])->middleware(['admin'])->name('userlist.destroy');
-
-    Route::get('/enroll/{id}', [EnrollController::class, 'enroll'])->middleware(['admin'])->name('enroll.enroll');
-
-
-});
-
 
 
