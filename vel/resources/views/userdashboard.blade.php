@@ -13,16 +13,19 @@
             <a href="{{ route('logs') }}">
                     <img src="{{ asset('logo/door.jpg') }}" alt="Smart Door Lock">
                 </a>
-                <h2 class="font-semibold text-center">Smart Door Lock</h2>
-                <p class="text-center">Buka dan kunci pintu dengan mudah hanya dengan sidik jari</p>
+                <h2 class="font-semibold text-center">Log Access</h2>
+                <p class="text-center">The log access feature keeps track of who accessed the door and when</p>
             </div>
 
             <div class="device">
             <a href="{{ route('smoke') }}">
                 <img src="{{ asset('logo/smoke.jpg') }}" alt="Smoke Detector">
                 <h2 class="font-semibold text-center">Smoke Detector</h2>
-                <p class="text-center">Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus</p>
+                <p class="text-center">The smoke detector feature provides protection by detecting the presence of smoke and alerting users</p>
             </div>
         </div>
     </div>
+    <footer>
+        &copy; 2023 Smart Class Kelompok 3
+    </footer>
 </x-app-layout>
