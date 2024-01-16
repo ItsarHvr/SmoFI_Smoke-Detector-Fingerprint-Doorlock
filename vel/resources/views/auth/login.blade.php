@@ -28,7 +28,7 @@
             <img src="{{ asset('logo/logo.png') }}" alt="Kampus Logo" class="logo2" style="width: 80px;">
             <form class="login-form" method="post" action="{{ url('/login') }}">
                 @csrf
-                <h2>Smart Door Lock and Smoke Detector System</h2>
+                <h2>SmoFi Login Page</h2>
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 <input type="text" name="email" placeholder="Email" class="login-input">
@@ -41,4 +41,7 @@
         <div class="decoration-container"></div>
     </div>
 </body>
+    <footer>
+        &copy; 2023 Smart Class Kelompok 3
+    </footer>
 </html>
