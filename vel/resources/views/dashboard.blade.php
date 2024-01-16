@@ -14,7 +14,7 @@
                     <img src="{{ asset('logo/door.jpg') }}" alt="Smart Door Lock" class="w-full h-auto">
                 </a>
                 <h2 class="font-semibold text-center">Log Access</h2>
-                <p class="text-center">Buka dan kunci pintu dengan mudah hanya dengan sidik jari</p>
+                <p class="text-center">The log access feature keeps track of who accessed the door and when</p>
             </div>
 
             <div class="device">
@@ -22,7 +22,7 @@
                     <img src="{{ asset('logo/smoke.jpg') }}" alt="Smoke Detector" class="w-full h-auto">
                 </a>
                 <h2 class="font-semibold text-center">Smoke Detector</h2>
-                <p class="text-center">Dapat notifikasi seketika jika ada tanda asap atau kebakaran di kampus</p>
+                <p class="text-center">The smoke detector feature provides protection by detecting the presence of smoke and alerting users</p>
             </div>
 
             <div class="device">
@@ -30,7 +30,7 @@
                     <img src="{{ asset('logo/sidik.png') }}" alt="Enroll Fingerprint" class="w-full h-auto">
                 </a>
                 <h2 class="font-semibold text-center">User List</h2>
-                <p class="text-center">Daftarkan fingerprintmu untuk mengakses pintu</p>
+                <p class="text-center">The user list feature simplifies user management for admins </p>
             </div>
 
             <div class="device">
@@ -38,7 +38,7 @@
                     <img src="{{ asset('logo/lock.png') }}" alt="Lock Unlock" class="w-full h-auto">
                 </a>
                 <h2 class="font-semibold text-center">Lock Unlock</h2>
-                <p class="text-center">Daftarkan fingerprintmu untuk mengakses pintu</p>
+                <p class="text-center">The lock unlock feature provides the ability to secure and release access with ease</p>
             </div>
         </div>
     </div>

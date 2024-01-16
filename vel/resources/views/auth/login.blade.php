@@ -41,7 +41,4 @@
         <div class="decoration-container"></div>
     </div>
 </body>
-    <footer>
-        &copy; 2023 Smart Class Kelompok 3
-    </footer>
 </html>

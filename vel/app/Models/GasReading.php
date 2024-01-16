@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class GasReading extends Model
 {
     use HasFactory;
+    protected $table = 'gas_readings';
+    public $timestamps;
 }
