@@ -16,6 +16,7 @@ const char* mqtt_password = "";
 const char* topic1 = "pbl/finger";
 const char* topic2 = "EnrollID";
 const char* topic3 = "pbl/relay";
+const char* topic4 = "deleteId";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -168,6 +169,7 @@ void connectToMQTT() {
       client.subscribe(topic1);
       client.subscribe(topic2);
       client.subscribe(topic3);
+      client.subscribe(topic4);
     } else {
       Serial.print("Failed, rc=");
       Serial.print(client.state());
@@ -196,7 +198,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   // Control the relay based on the received status
   digitalWrite(relay1, statusRelay == 0 ? HIGH : LOW);
-  }
+  }else if (strcmp(topic, topic4) == 0) {
+    StaticJsonDocument<256> doc;
+    deserializeJson(doc, payload);
+
+    uint8_t id = doc["id"];
+    deleteFingerprint(id);;
 }
 
 void sendFingerprintID(int fingerprintID) {
@@ -486,4 +493,24 @@ void buzzerFalse(){
   digitalWrite(buzzerPin, HIGH);
   delay(700);
   digitalWrite(buzzerPin, LOW);
+}
+
+uint8_t deleteFingerprint(uint8_t id) {
+  uint8_t p = -1;
+
+  p = finger.deleteModel(id);
+
+  if (p == FINGERPRINT_OK) {
+    Serial.println("Deleted!");
+  } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
+    Serial.println("Communication error");
+  } else if (p == FINGERPRINT_BADLOCATION) {
+    Serial.println("Could not delete in that location");
+  } else if (p == FINGERPRINT_FLASHERR) {
+    Serial.println("Error writing to flash");
+  } else {
+    Serial.print("Unknown error: 0x"); Serial.println(p, HEX);
+  }
+
+  return p;
 }
