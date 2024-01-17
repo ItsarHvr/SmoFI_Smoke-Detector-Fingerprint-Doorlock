@@ -6,7 +6,7 @@
     <title>Status Relay</title>
     <link rel="stylesheet" href="{{asset('css/stylebutton.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.3/paho-mqtt.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -57,7 +57,7 @@
         }
 
         // Subscribe to MQTT for real-time updates
-        const mqttClient = new Paho.MQTT.Client('192.168.100.68', 1883, 'web_' + parseInt(Math.random() * 100, 10));
+        const mqttClient = new Paho.MQTT.Client('192.168.100.4', 1883, 'web_' + parseInt(Math.random() * 100, 10));
         mqttClient.connect({
             onSuccess: function () {
                 mqttClient.subscribe('relay/status');

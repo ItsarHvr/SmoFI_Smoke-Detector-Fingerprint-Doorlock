@@ -7,14 +7,15 @@
 #include <Adafruit_Fingerprint.h>
 #include <LiquidCrystal_I2C.h>
 
-const char* ssid = "Smartfren 2rb/Gb";
-const char* password = "123443211234";
-const char* mqtt_server = "192.168.24.193";
+const char* ssid = "Rumah ceria";
+const char* password = "Kikiisan21";
+const char* mqtt_server = "192.168.100.68";
 const int mqtt_port = 1883;
 const char* mqtt_username = "";
 const char* mqtt_password = "";
-const char* mqtt_topic = "pbl/finger";
-const char* enroll_topic = "EnrollID";
+const char* topic1 = "pbl/finger";
+const char* topic2 = "EnrollID";
+const char* topic3 = "pbl/relay";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -99,6 +100,7 @@ void loop() {
     if (lastState == 0) {
       lastState = -1;
       displayInvalidFinger();
+      sendFingerprintID(0);
       delay(2000);
       displayWaitFinger();
     }
@@ -122,6 +124,7 @@ void loop() {
     }
 
     digitalWrite(relay1, relayState);
+    sendRelayStatus();
     delay(1000);
   }
 
@@ -133,8 +136,9 @@ void connectToMQTT() {
     Serial.println("Connecting to MQTT...");
     if (client.connect("ESP8266Client", mqtt_username, mqtt_password)) {
       Serial.println("Connected to MQTT broker");
-      client.subscribe(mqtt_topic);
-      client.subscribe(enroll_topic);
+      client.subscribe(topic1);
+      client.subscribe(topic2);
+      client.subscribe(topic3);
     } else {
       Serial.print("Failed, rc=");
       Serial.print(client.state());
@@ -147,21 +151,41 @@ void connectToMQTT() {
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println("Message arrived in topic: " + String(topic));
 
-  if (strcmp(topic, enroll_topic) == 0) {
+  if (strcmp(topic, topic2) == 0) {
     StaticJsonDocument<256> doc;
     deserializeJson(doc, payload);
 
     uint8_t id = doc["id"];
     enrollFingerprint(id);
+  } else if (strcmp(topic, topic3) == 0) {
+    StaticJsonDocument<256> doc;
+    deserializeJson(doc, payload);
+    int statusRelay = doc["statusRelay"];
+
+    Serial.print("Received Relay Status: ");
+    Serial.println(statusRelay);
+
+  // Control the relay based on the received status
+  digitalWrite(relay1, statusRelay == 0 ? HIGH : LOW);
   }
 }
 
 void sendFingerprintID(int fingerprintID) {
   connectToMQTT();
   String jsonPayload = "{\"fingerprintId\":" + String(fingerprintID) + "}";
-  client.publish(mqtt_topic, jsonPayload.c_str());
+  client.publish(topic1, jsonPayload.c_str());
 
   Serial.println("Fingerprint ID sent to EMQX for door unlocking!");
+}
+
+void sendRelayStatus() {
+  connectToMQTT();
+  int mqttRelayState = (relayState == HIGH) ? 1 : 0;
+
+  String jsonPayload = "{\"statusRelay\":" + String(mqttRelayState) + "}";
+  client.publish(topic3, jsonPayload.c_str());
+
+  Serial.println("Relay status sent to MQTT broker!");
 }
 
 uint8_t getFingerprintID() {
