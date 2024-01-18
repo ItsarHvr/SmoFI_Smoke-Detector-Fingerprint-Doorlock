@@ -34,8 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/logs', [AccessLogController::class, 'showLogs'])->name('logs');
     Route::get('/api/log-access', [AccessLogController::class, 'getLogAccessData']);
 
-    Route::get('/smoke', [SmokeDetectorController::class, 'index'])->name('smoke');
-    Route::get('/insert-reading', [SmokeDetectorController::class, 'insertReading']);
+    Route::get('/smoke-detector', 'SmokeDetectorController@index');
 
     Route::get('/userlist', [UserListController::class, 'index'])->middleware(['admin'])->name('userlist.index');
     Route::get('/userlist/{id}/edit', [UserListController::class, 'edit'])->middleware(['admin'])->name('userlist.edit');
