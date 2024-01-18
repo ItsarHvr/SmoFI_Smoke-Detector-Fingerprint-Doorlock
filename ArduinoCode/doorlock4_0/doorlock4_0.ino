@@ -16,6 +16,7 @@ const char* mqtt_password = "";
 const char* topic1 = "pbl/finger";
 const char* topic2 = "EnrollID";
 const char* topic3 = "pbl/relay";
+const char* topic4 = "deleteId";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -24,11 +25,16 @@ SoftwareSerial mySerial(D7, D8); // RX, TX
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 LiquidCrystal_I2C lcd(0x27, 16, 2);  // Alamat I2C LCD (0x27 adalah umumnya digunakan)
 
+int state = 0;
 bool lastState = -1;
 int relay1 = D0;
+const int buzzerPin = D6;
 int fingerID;
 int button = D4;
+const int sensorPin = D5;
 int relayState = HIGH;
+bool doorClosing = false; 
+
 
 void setup() {
   Serial.begin(115200);
@@ -51,6 +57,8 @@ void setup() {
   pinMode(relay1, OUTPUT);
   digitalWrite(relay1, HIGH);
   pinMode(button, INPUT_PULLUP);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(sensorPin, INPUT_PULLUP);
 
   lcd.init();
   lcd.backlight();
@@ -101,6 +109,7 @@ void loop() {
       lastState = -1;
       displayInvalidFinger();
       sendFingerprintID(0);
+      buzzerFalse();
       delay(2000);
       displayWaitFinger();
     }
@@ -108,9 +117,30 @@ void loop() {
     digitalWrite(relay1, LOW);
     sendFingerprintID(id);
     displayFingerOK();
-    delay(2000);
-    displayWaitFinger();
-    digitalWrite(relay1, HIGH);
+    buzzer();
+    doorClosing = false;
+  }
+
+  int sensorValue = digitalRead(sensorPin);
+
+  if (sensorValue == LOW) {
+    // Pintu tertutup
+    if (doorClosing) {
+      doorClosing = false;  // Pintu telah tertutup, reset status penutupan
+      Serial.println("Pintu tertutup.");
+      digitalWrite(relay1, HIGH);
+      relayState = LOW;
+      sendRelayStatus();
+      displayWaitFinger();
+    }
+  } else {
+    // Pintu terbuka
+    if (!doorClosing) {
+      doorClosing = true;  // Pintu sedang dalam proses penutupan
+      relayState = HIGH;
+      Serial.println("Pintu terbuka.");
+      // Tambahkan logika tambahan jika diperlukan sebelum penutupan pintu
+    }
   }
 
   int buttonState = digitalRead(button); // read new state
@@ -139,6 +169,7 @@ void connectToMQTT() {
       client.subscribe(topic1);
       client.subscribe(topic2);
       client.subscribe(topic3);
+      client.subscribe(topic4);
     } else {
       Serial.print("Failed, rc=");
       Serial.print(client.state());
@@ -167,7 +198,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   // Control the relay based on the received status
   digitalWrite(relay1, statusRelay == 0 ? HIGH : LOW);
-  }
+  }else if (strcmp(topic, topic4) == 0) {
+    StaticJsonDocument<256> doc;
+    deserializeJson(doc, payload);
+
+    uint8_t id = doc["id"];
+    deleteFingerprint(id);;
 }
 
 void sendFingerprintID(int fingerprintID) {
@@ -445,4 +481,36 @@ uint8_t getFingerprintEnroll(uint8_t id) {
   }
 
   return true;
+}
+
+void buzzer(){
+  digitalWrite(buzzerPin, HIGH);
+  delay(100);
+  digitalWrite(buzzerPin, LOW);
+}
+
+void buzzerFalse(){
+  digitalWrite(buzzerPin, HIGH);
+  delay(700);
+  digitalWrite(buzzerPin, LOW);
+}
+
+uint8_t deleteFingerprint(uint8_t id) {
+  uint8_t p = -1;
+
+  p = finger.deleteModel(id);
+
+  if (p == FINGERPRINT_OK) {
+    Serial.println("Deleted!");
+  } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
+    Serial.println("Communication error");
+  } else if (p == FINGERPRINT_BADLOCATION) {
+    Serial.println("Could not delete in that location");
+  } else if (p == FINGERPRINT_FLASHERR) {
+    Serial.println("Error writing to flash");
+  } else {
+    Serial.print("Unknown error: 0x"); Serial.println(p, HEX);
+  }
+
+  return p;
 }

@@ -1,0 +1,122 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #c850c0, #4158d0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 30%;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.toggle, .back-button {
+    width: 150px;
+    height: 150px; /* Set height for both buttons */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    border-radius: 100%; /* Membuat toggle menjadi bulat */
+    background-color: #ccc; /* Warna latar belakang ketika switch tidak aktif */
+    cursor: pointer; /* Tambahkan kursor pointer */
+}
+
+.toggle:after {
+    content: "Off";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #fff; /* Warna teks */
+    opacity: 1; /* Defaultnya disembunyikan */
+    transition: opacity 0.3s;
+}
+
+.checkbox{
+    display: none;
+}
+
+.checkbox:checked + .toggle {
+    background-color: #4CAF50; /* Warna latar belakang ketika switch aktif */
+}
+
+.checkbox:checked + .toggle:after {
+    content: "On";
+    opacity: 1; /* Tampilkan teks saat switch aktif */
+}
+
+.tulis {
+    font-size: 18px; /* Set the font size as needed */
+    color: #000; /* Set the default text color */
+    transition: color 0.3s; /* Add transition effect for color change */
+}
+
+.checkbox:checked + .toggle + .tulis::before {
+    content: "Pintu Terbuka"; /* Set the text when the switch is active */
+}
+
+.tulis::before {
+    content: "Pintu Terkunci"; /* Set the default text */
+    display: block; /* Add this to make sure it's on a new line */
+}
+
+.checkbox:checked + .toggle:after + .tulis::before {
+    content: "Pintu Tertutup"; /* Set the text when the switch is active */
+}
+
+.back-button {
+    width: 150px;
+    height: 50px;
+    background-color: #3490dc;
+    color: #fff;
+    border-radius: 25px;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background-color: #2779bd;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+h2 {
+    margin: 0;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+    button, .back-button {
+        width: 100%; /* Make buttons full width on smaller screens */
+        height: 80px; /* Adjust height for smaller screens */
+        border-radius: 10px; /* Adjust border-radius for smaller screens */
+        margin-top: 10px; /* Adjust margin for spacing on smaller screens */
+    }
+}
