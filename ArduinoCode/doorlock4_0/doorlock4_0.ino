@@ -102,7 +102,6 @@ void loop() {
   }
 
   client.loop();
-
   int id = getFingerprintIDez();
   if (id == -1) {
     if (lastState == 0) {
@@ -119,6 +118,8 @@ void loop() {
     displayFingerOK();
     buzzer();
     doorClosing = false;
+    relayState = HIGH;
+    sendRelayStatus();
   }
 
   int sensorValue = digitalRead(sensorPin);
@@ -149,12 +150,15 @@ void loop() {
     // Change the state of the relay
     if (relayState == HIGH) {
       relayState = LOW;
+      displayWaitFinger();
+      digitalWrite(relay1, relayState);
+      sendRelayStatus();
     } else {
       relayState = HIGH;
+      displayFingerOK();
+      digitalWrite(relay1, relayState);
+      sendRelayStatus();
     }
-
-    digitalWrite(relay1, relayState);
-    sendRelayStatus();
     delay(1000);
   }
 
@@ -188,6 +192,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
     uint8_t id = doc["id"];
     enrollFingerprint(id);
+    delay(2000);
+    displayWaitFinger();
   } else if (strcmp(topic, topic3) == 0) {
     StaticJsonDocument<256> doc;
     deserializeJson(doc, payload);
@@ -204,6 +210,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
     uint8_t id = doc["id"];
     deleteFingerprint(id);;
+  }
 }
 
 void sendFingerprintID(int fingerprintID) {
@@ -347,12 +354,14 @@ uint8_t getFingerprintEnroll(uint8_t id) {
   int p = -1;
   Serial.print("Waiting for valid finger to enroll as #");
   Serial.println(id);
+  displayEnroll1();
   
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
     switch (p) {
       case FINGERPRINT_OK:
         Serial.println("Image taken");
+        buzzer();
         break;
       case FINGERPRINT_NOFINGER:
         Serial.println(".");
@@ -392,6 +401,7 @@ uint8_t getFingerprintEnroll(uint8_t id) {
   }
 
   Serial.println("Remove finger");
+  displayEnrollRemove();
   delay(2000);
   p = 0;
   while (p != FINGERPRINT_NOFINGER) {
@@ -401,6 +411,7 @@ uint8_t getFingerprintEnroll(uint8_t id) {
   Serial.println(id);
   p = -1;
   Serial.println("Place same finger again");
+  displayEnroll2();
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
     switch (p) {
@@ -466,6 +477,8 @@ uint8_t getFingerprintEnroll(uint8_t id) {
   p = finger.storeModel(id);
   if (p == FINGERPRINT_OK) {
     Serial.println("Stored!");
+    displayEnrollOK();
+    buzzer2();
   } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
     Serial.println("Communication error");
     return p;
@@ -489,10 +502,52 @@ void buzzer(){
   digitalWrite(buzzerPin, LOW);
 }
 
+void buzzer2(){
+  digitalWrite(buzzerPin, HIGH);
+  delay(100);
+  digitalWrite(buzzerPin, LOW);
+  delay(100);
+  digitalWrite(buzzerPin, HIGH);
+  delay(100);
+  digitalWrite(buzzerPin, LOW);
+}
+
 void buzzerFalse(){
   digitalWrite(buzzerPin, HIGH);
   delay(700);
   digitalWrite(buzzerPin, LOW);
+}
+
+void displayEnroll1() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("PUT YOUR FINGER");
+    lcd.setCursor(0, 1);
+    lcd.print("TO ENROLL");
+}
+
+void displayEnrollRemove() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("REMOVE");
+    lcd.setCursor(0, 1);
+    lcd.print("YOUR FINGER");
+}
+
+void displayEnroll2() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("PUT SAME FINGER");
+    lcd.setCursor(0, 1);
+    lcd.print("TO ENROLL");
+}
+
+void displayEnrollOK() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("FINGEPRINT");
+    lcd.setCursor(0, 1);
+    lcd.print("ENROLLED");
 }
 
 uint8_t deleteFingerprint(uint8_t id) {
