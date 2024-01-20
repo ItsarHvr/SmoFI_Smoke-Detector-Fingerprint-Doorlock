@@ -7,6 +7,7 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 .container {
     width: 60%;
     margin-top: 10px;
@@ -15,35 +16,45 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
+
 h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
+
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 12px;
     color: #333;
 }
+
 th {
     background-color: #f2f2f2;
 }
+
+/* Pagination Styles */
 .pagination {
     margin-top: 20px;
     display: flex;
     justify-content: center;
 }
+
+/* Scroll Container Styles */
 .scroll-container {
-    max-height: 400px; /* Set your preferred maximum height */
+    max-height: 400px;
     overflow-y: auto;
 }
 
+/* Custom Pagination Styles */
 .custom-pagination {
     display: flex;
     justify-content: center;
@@ -69,30 +80,34 @@ th {
     color: #fff;
 }
 
+/* Responsive Styles for Screens < 767px */
 @media only screen and (max-width: 767px) {
     .container {
-        width: 90%; /* Mengurangi lebar kontainer untuk perangkat seluler dengan lebar layar kurang dari 767px */
+        width: 90%;
+        overflow-y: auto; /* Tambahkan overflow-y untuk scroll vertikal */
     }
 
     table {
-        margin-top: 10px; /* Meningkatkan jarak antara tabel dan elemen sebelumnya untuk perangkat seluler */
+        margin-top: 10px;
     }
 
     .scroll-container {
-        max-height: none; /* Menghapus batasan tinggi untuk perangkat seluler */
-        overflow-y: visible; /* Menghapus overflow untuk perangkat seluler */
+        max-height: none;
+        overflow-y: visible;
     }
 
     .pagination {
-        margin-top: 10px; /* Meningkatkan jarak antara pagination dan elemen sebelumnya untuk perangkat seluler */
+        margin-top: 10px;
     }
 
     .custom-pagination {
-        flex-direction: column; /* Mengubah arah flex untuk perangkat seluler */
-        align-items: center; /* Pusatkan elemen untuk perangkat seluler */
+        flex-direction: column;
+        align-items: center;
     }
 
     .custom-pagination a {
-        margin-bottom: 5px; /* Meningkatkan jarak antara tautan pagination untuk perangkat seluler */
+        margin-bottom: 5px;
+        display: block;
     }
 }
+

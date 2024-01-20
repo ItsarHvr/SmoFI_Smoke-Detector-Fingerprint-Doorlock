@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>User List - Smart Door Lock Using Fingerprint & Smoke Detector</title>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/stylesmoke.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/userlist.css') }}">
+    <title>User List - Smart Door Lock Using Fingerprint & Smoke Detector</title>
 </head>
+
 <body>
     <div class="container">
         <h1>User List</h1>
@@ -16,7 +18,7 @@
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Role</th>
-					<th>Fingerprint ID</th>
+                    <th>Fingerprint ID</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -27,16 +29,20 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
-						<td>{{ $user->fingerprint_id}}</td>
+                        <td>{{ $user->id_fingerprint }}</td>
                         <td>
-                        <a href="{{ route('enroll.enroll', ['id' => $user->id]) }}" class="btn btn-warning">Enroll</a>
+                            <a href="{{ route('enroll.enroll', ['id' => $user->id]) }}"
+                                class="btn btn-primary">Enroll</a>
 
-                            <a href="{{ route('userlist.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('userlist.edit', $user->id) }}"
+                                class="btn btn-warning">Edit</a>
 
-							<form action="{{ route('userlist.destroy', $user->id) }}" method="post" class="d-inline">
+                            <form action="{{ route('userlist.destroy', $user->id) }}" method="post"
+                                class="d-inline">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -46,14 +52,10 @@
 
         <!-- Pagination Links -->
         <div class="d-flex justify-content-center">
-            <!-- Since we don't have actual pagination data, I'm using a placeholder link -->
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-            </ul>
+            {{ $users->links() }}
         </div>
         <a href="{{ url('/home') }}" class="btn btn-primary">Back to Dashboard</a>
     </div>
 </body>
+
 </html>
