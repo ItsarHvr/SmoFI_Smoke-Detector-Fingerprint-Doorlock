@@ -39,6 +39,16 @@
 
         <a href="{{ url('/home') }}" class="btn btn-primary mt-3">Back to Dashboard</a>
     </div>
+    @vite('resources/js/app.js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            Echo.channel(`smoke-channel`)
+                 .listen('SmokeEvent', (e) => {
+                    console.log(e);
+    });
+});
+        
+    </script>
 
     <!-- Bootstrap JS (optional, if you need it) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>

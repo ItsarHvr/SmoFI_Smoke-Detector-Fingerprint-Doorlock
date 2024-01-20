@@ -4,7 +4,7 @@ $gasValue = $_GET['gas_value'];
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "laravel";
+$dbname = "pbl";
 
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);

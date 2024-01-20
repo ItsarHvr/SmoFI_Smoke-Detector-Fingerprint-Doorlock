@@ -15,8 +15,4 @@ class SmokeDetectorController extends Controller
 
     return view('smoke', compact('gasReadings'));
 }
-
-
-
-    
 }

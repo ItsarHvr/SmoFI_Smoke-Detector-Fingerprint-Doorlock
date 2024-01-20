@@ -77,6 +77,8 @@ class MqttSubscribe extends Command
                 }
             }, 0);
 
+            
+
             $mqtt->loop(true);
             $mqtt->disconnect();
             sleep(1);

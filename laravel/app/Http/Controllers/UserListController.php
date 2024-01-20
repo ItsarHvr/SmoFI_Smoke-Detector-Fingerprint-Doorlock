@@ -44,9 +44,40 @@ class UserListController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        try {
+            $user = User::findOrFail($id);
+            $fingerprintId = $user->fingerprint_id;
+            $user->delete();
+            $this->publishToMqtt($fingerprintId);
 
-        return redirect()->route('userlist.index')->with('status', 'User deleted successfully');
+            return redirect()->route('userlist.index')->with('status', 'User deleted successfully');
+        } catch (\Exception $e) {
+            Log::error('Gagal menghapus pengguna: ' . $e->getMessage());
+            return redirect()->route('userlist.index')->with('error', 'Failed to delete user');
+        }
+    }
+
+    private function publishToMqtt($id)
+    {
+        $server   = 'localhost';
+        $port     = 1883;
+        $clientId = 'laravel';
+
+        $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
+
+        try {
+        // Connect to the MQTT broker
+            $mqtt->connect();
+
+        // Publish the ID to the specified topic
+            $mqtt->publish('deleteId', json_encode(['id' => $id],0));
+        } catch (\Exception $e) {
+            Log::error('Gagal terhubung ke broker MQTT: ' . $e->getMessage());
+        // Tindakan jika gagal terhubung ke broker
+            throw $e;
+        } finally {
+        // Close the MQTT connection
+            $mqtt->disconnect();
+        }
     }
 }

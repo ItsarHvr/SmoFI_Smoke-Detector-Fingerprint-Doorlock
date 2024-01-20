@@ -10,10 +10,6 @@ use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\GasReadingController;
 use App\Http\Controllers\UserListController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
@@ -32,9 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/door-update', [DoorController::class, 'perbaruiStatusRelay']);
     
     Route::get('/logs', [AccessLogController::class, 'showLogs'])->name('logs');
-    Route::get('/api/log-access', [AccessLogController::class, 'getLogAccessData']);
 
-    Route::get('/smoke-detector', 'SmokeDetectorController@index');
+    Route::get('/smoke-detector', [SmokeDetectorController::class, 'index'])->name('smoke');
 
     Route::get('/userlist', [UserListController::class, 'index'])->middleware(['admin'])->name('userlist.index');
     Route::get('/userlist/{id}/edit', [UserListController::class, 'edit'])->middleware(['admin'])->name('userlist.edit');
@@ -45,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/enroll/{id}', [EnrollController::class, 'enroll_id'])->middleware(['admin'])->name('enroll.update');
 
 });
+    
+Route::get('/api/log-access', [AccessLogController::class, 'getLogAccessData']);
 
 Route::get('/send-event', function(){
     $pesan = "tes";
@@ -83,6 +80,12 @@ Route::get('/send-paginate', function(){
 use App\Http\Controllers\TestController;
 
 Route::get('/test-log-access', [TestController::class, 'testLogAccess']);
+
+Route::get('/send-smoke', function(){
+    $text = "Gas_value";
+    broadcast(new \App\Events\SmokeEvent($text));
+});
+
 
 
 
