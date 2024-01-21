@@ -11,8 +11,8 @@ class UserListController extends Controller
 {
     public function index()
     {
-         $users = User::paginate(10); // Change the number as per your requirements
-    return view('userlist', compact('users'));
+        $users = User::all();
+        return view('userlist', compact('users'));
     }
 
     public function edit($id)

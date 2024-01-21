@@ -6,10 +6,11 @@ use Illuminate\Console\Command;
 use PhpMqtt\Client\MqttClient;
 use App\Models\User;
 use App\Models\Door;
-use App\Models\FingerData;
 use App\Models\LogAccess;
-use App\Events\HelloEvent;
+use App\Models\GasReading;
+use App\Events\RelayEvent;
 use App\Events\LogAccessEvent;
+use App\Events\SmokeEvent;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
@@ -35,23 +36,17 @@ class MqttSubscribe extends Command
                 Door::create(['status' => $statusRelay]);
 
                 \Log::info('Relay status updated: ' . $statusRelay);
-                broadcast(new HelloEvent($statusRelay));
+                broadcast(new RelayEvent($statusRelay));
             }, 0);
 
             $mqtt->subscribe('pbl/finger', function ($topic, $message, $retained, $matchedWildcards) {
                 $fingerprintId = json_decode($message)->fingerprintId;
                 $access = "Access Granted";
-                FingerData::create([
-                    'fingerprint_id' => $fingerprintId,
-                    'access' => $access]);
-
                 Log::info('Fingerprint ID received: ' . $fingerprintId);
 
-                // Cocokkan dengan data pada tabel 'user'
                 $user = User::where('fingerprint_id', $fingerprintId)->first();
 
                 if ($user) {
-                    // Jika cocok, masukkan nama ke tabel baru
                     $updatedLogAccess = [
                         'user_name' => $user->name,
                         'fingerprint_id'=>$fingerprintId,
@@ -77,7 +72,18 @@ class MqttSubscribe extends Command
                 }
             }, 0);
 
-            
+            $mqtt->subscribe('pbl/smoke', function ($topic, $message, $retained, $matchedWildcards) {
+                $smokeValue = json_decode($message)->smokeValue;
+                GasReading::create(['gas_value' => $smokeValue]);
+                
+                $SmokeValue = [
+                    'gas_value' => $smokeValue,
+                    'created_at' => now(),
+                ];
+
+                \Log::info('Smoke Value Received: ' . $smokeValue);
+                broadcast(new SmokeEvent($SmokeValue));
+            }, 0);
 
             $mqtt->loop(true);
             $mqtt->disconnect();

@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 });
     
 Route::get('/api/log-access', [AccessLogController::class, 'getLogAccessData']);
+Route::get('/api/smoke-value', [SmokeDetectorController::class, 'getSmokeValueData']);
 
 Route::get('/send-event', function(){
     $pesan = "tes";
@@ -82,7 +83,7 @@ use App\Http\Controllers\TestController;
 Route::get('/test-log-access', [TestController::class, 'testLogAccess']);
 
 Route::get('/send-smoke', function(){
-    $text = "Gas_value";
+    $text = 2000;
     broadcast(new \App\Events\SmokeEvent($text));
 });
 

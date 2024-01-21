@@ -9,10 +9,18 @@ use App\Models\GasReading;
 class SmokeDetectorController extends Controller
 {
     public function index()
-{
-    // Fetch data from the gas_readings table, ordered by ID in descending order
-    $gasReadings = GasReading::orderBy('id', 'desc')->simplePaginate(6);
+    {
+        $gasReadings = GasReading::orderBy('id', 'desc')->paginate(6);
 
-    return view('smoke', compact('gasReadings'));
-}
+        return view('smoke', compact('gasReadings'));
+    }
+
+    public function getSmokeValueData(Request $request)
+    {
+        $perPage = 6;
+        $SmokeValueData = GasReading::orderBy('id', 'desc')->paginate(6);($perPage);
+
+        return response()->json($SmokeValueData);
+
+    }
 }

@@ -10,5 +10,4 @@ class Door extends Model
     use HasFactory;
     protected $table = 'doors';
     protected $fillable = ['status'];
-    public $timestamps = false;
 }

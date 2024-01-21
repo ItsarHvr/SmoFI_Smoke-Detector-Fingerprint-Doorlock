@@ -14,7 +14,6 @@
         <h2>Lock & Unlock <br> Smart Door</h2>
         <br>
         <center>
-            <!-- Remove the duplicated switch input -->
             <form id="statusForm" method="post" action="/door-update">
                 @csrf
                 <input type="hidden" name="switch" value="off">
@@ -47,7 +46,7 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text(); // Read the response as text, not JSON
+                return response.text();
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -55,8 +54,8 @@
         }
 
         document.addEventListener("DOMContentLoaded", function (event) {
-            Echo.channel(`hello-channel`)
-                .listen('HelloEvent', (e) => {
+            Echo.channel(`relay-channel`)
+                .listen('RelayEvent', (e) => {
                     console.log(e);
                     if (e.data !== undefined) {
                         updateCheckboxStatus(e.data);
@@ -69,15 +68,13 @@
     @push('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
-            Echo.channel(`hello-channel`)
-                .listen('HelloEvent', (e) => {
+            Echo.channel(`relay-channel`)
+                .listen('RelayEvent', (e) => {
                     console.log(e);
-                    // Check if the event payload contains the 'data' property
                     if (e.data !== undefined) {
-                        // Toggle the switch based on the value of e.data
                         const switchToggle = document.getElementById('switch');
                         if (switchToggle) {
-                            switchToggle.checked = (e.data == 1); // Set to true (on) if e.data is 1, otherwise false (off)
+                            switchToggle.checked = (e.data == 1);
                         }
                     }
                 });
