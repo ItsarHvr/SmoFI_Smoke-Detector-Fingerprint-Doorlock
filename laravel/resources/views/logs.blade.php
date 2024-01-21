@@ -57,7 +57,7 @@
     </div>
 
             {{-- Next Page --}}
-            <li class="page-item {{ $logAccesses->currentPage() == $logAccesses->lastPage() ? 'disabled' : '' }}">
+            <li class="page-item next {{ $logAccesses->currentPage() == $logAccesses->lastPage() ? 'disabled' : '' }}">
                 <a class="page-link" href="{{ $logAccesses->nextPageUrl() }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
@@ -71,6 +71,7 @@
 <script>
     let totalPages;
 let currentPage;
+let newTotalPages;
 const itemsPerPage = 15;
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -87,8 +88,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             console.log('Data dari API:', data);
             console.log('Total halaman pada paginasi:', totalPages);
 
-            // Hanya memperbarui totalPages jika data.total berubah
-            const newTotalPages = Math.ceil(data.total / itemsPerPage);
+            newTotalPages = Math.ceil(data.total / itemsPerPage);
+            console.log('new total page:', newTotalPages);
             if (totalPages !== newTotalPages) {
                 totalPages = newTotalPages || 1; // Jika totalPages 0, set menjadi 1
                 console.log('Total halaman diperbarui menjadi:', totalPages);
@@ -133,6 +134,25 @@ function addPageNumber(paginate) {
 
         listItem.appendChild(link);
         pageNumber.appendChild(listItem);
+        
+    }
+
+    const nextButton = document.querySelector('.page-item.next');
+    if (nextButton) {
+        if (currentPage < totalPages) {
+            nextButton.classList.remove('disabled');
+            // Tambahkan event listener untuk tombol Next
+            nextButton.addEventListener('click', function() {
+                // Ganti halaman saat ini saat tombol Next ditekan
+                currentPage++;
+                // Refresh halaman dengan URL yang sesuai
+                link.href = `/logs?page=${i}`;
+            });
+        } else {
+            nextButton.classList.add('disabled');
+            // Hapus event listener jika tombol Next dinonaktifkan
+            nextButton.removeEventListener('click', function() {});
+        }
     }
 }
 

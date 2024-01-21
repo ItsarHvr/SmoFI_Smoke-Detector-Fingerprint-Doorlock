@@ -39,3 +39,60 @@ th {
     display: flex;
     justify-content: center;
 }
+.scroll-container {
+    max-height: 400px; /* Set your preferred maximum height */
+    overflow-y: auto;
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.custom-pagination a {
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.custom-pagination a:hover {
+    background-color: #e9ecef;
+}
+
+.custom-pagination .active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+    .container {
+        width: 90%; /* Mengurangi lebar kontainer untuk perangkat seluler dengan lebar layar kurang dari 767px */
+    }
+
+    table {
+        margin-top: 10px; /* Meningkatkan jarak antara tabel dan elemen sebelumnya untuk perangkat seluler */
+    }
+
+    .scroll-container {
+        max-height: none; /* Menghapus batasan tinggi untuk perangkat seluler */
+        overflow-y: visible; /* Menghapus overflow untuk perangkat seluler */
+    }
+
+    .pagination {
+        margin-top: 10px; /* Meningkatkan jarak antara pagination dan elemen sebelumnya untuk perangkat seluler */
+    }
+
+    .custom-pagination {
+        flex-direction: column; /* Mengubah arah flex untuk perangkat seluler */
+        align-items: center; /* Pusatkan elemen untuk perangkat seluler */
+    }
+
+    .custom-pagination a {
+        margin-bottom: 5px; /* Meningkatkan jarak antara tautan pagination untuk perangkat seluler */
+    }
+}

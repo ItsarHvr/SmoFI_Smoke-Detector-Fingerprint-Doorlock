@@ -17,10 +17,11 @@ class AccessLogController extends Controller
     }
 
     public function getLogAccessData(Request $request)
-{
-    $perPage = 15; // Adjust as needed
-    $logAccessData = LogAccess::paginate($perPage);
+    {
+        $perPage = 15; // Adjust as needed
+        $logAccessData = LogAccess::paginate($perPage);
 
-    return response()->json($logAccessData);
-}
+        return response()->json($logAccessData);
+
+    }
 }

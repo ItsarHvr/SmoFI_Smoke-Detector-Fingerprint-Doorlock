@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Smoke Detector - Smart Door Lock Using Fingerprint & Smoke Detector</title>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoke Detector - Gas Readings</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/stylesmoke.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Smoke Detector Data</h1>
+    <div class="container mt-4">
+        <h1>Gas Readings Data</h1>
+
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Gas Value</th>
                     <th>Status</th>
                     <th>Timestamp</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    // Generate fake data using Faker
-                    $faker = Faker\Factory::create();
-                    $fakeData = [];
-
-                    for ($i = 1; $i <= 10; $i++) {
-                        $fakeData[] = (object) [
-                            'id' => $i,
-                            'status' => $faker->boolean ? 'Smoke Detected' : 'No Smoke',
-                            'timestamp' => $faker->dateTimeThisMonth()->format('Y-m-d H:i:s'),
-                        ];
-                    }
-                @endphp
-
-                @foreach ($fakeData as $data)
+                @foreach ($gasReadings->sortByDesc('id') as $reading)
                     <tr>
-                        <td>{{ $data->id }}</td>
-                        <td>{{ $data->status }}</td>
-                        <td>{{ $data->timestamp }}</td>
+                        <td>{{ $reading->id }}</td>
+                        <td>{{ $reading->gas_value }}</td>
+                        <td>{{ $reading->gas_value > 1000 ? ' Gas Detected' : 'Gas Not Detected' }}</td>
+                        <td>{{ $reading->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <!-- Pagination Links -->
-        <div class="d-flex justify-content-center">
-            <!-- Since we don't have actual pagination data, I'm using a placeholder link -->
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-            </ul>
+        <!-- Custom Styled Pagination -->
+        <div class="custom-pagination">
+            {{ $gasReadings->render() }}
         </div>
-        <a href="{{ url('/home') }}" class="btn btn-primary">Back to Dashboard</a>
+
+        <a href="{{ url('/home') }}" class="btn btn-primary mt-3">Back to Dashboard</a>
     </div>
+    @vite('resources/js/app.js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            Echo.channel(`smoke-channel`)
+                 .listen('SmokeEvent', (e) => {
+                    console.log(e);
+    });
+});
+        
+    </script>
+
+    <!-- Bootstrap JS (optional, if you need it) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-1fa5b101.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-4c2d357a.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

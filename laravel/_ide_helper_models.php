@@ -37,6 +37,7 @@ namespace App\Models{
  * @property string $access
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|FingerData newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FingerData newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FingerData query()
@@ -54,8 +55,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $gas_value
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $created_at
+ * @property string|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|GasReading newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GasReading newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GasReading query()
@@ -65,6 +66,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|GasReading whereUpdatedAt($value)
  */
 	class GasReading extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\LogAccess
+ *
+ * @property int $id
+ * @property string $user_name
+ * @property string $fingerprint_id
+ * @property string $access_date
+ * @property string $access_time
+ * @property string $access
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess query()
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess whereAccess($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess whereAccessDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess whereAccessTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess whereFingerprintId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LogAccess whereUserName($value)
+ */
+	class LogAccess extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -134,6 +158,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\FingerData|null $fingerData
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
