@@ -7,9 +7,9 @@
 #include <Adafruit_Fingerprint.h>
 #include <LiquidCrystal_I2C.h>
 
-const char* ssid = "Rumah ceria";
-const char* password = "Kikiisan21";
-const char* mqtt_server = "192.168.100.68";
+const char* ssid = "Ngapain liat2";
+const char* password = "gataudah";
+const char* mqtt_server = "192.168.213.40";
 const int mqtt_port = 1883;
 const char* mqtt_username = "";
 const char* mqtt_password = "";
@@ -204,9 +204,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
     if(statusRelay == 0){
       relayState = LOW;
       digitalWrite(relay1, HIGH);
+      displayWaitFinger();
     }else{
       relayState = HIGH;
       digitalWrite(relay1, LOW);
+      displayFingerOK();
     }
     
   }else if (strcmp(topic, topic4) == 0) {
