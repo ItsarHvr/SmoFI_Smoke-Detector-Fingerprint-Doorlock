@@ -74,7 +74,6 @@ h2 {
   align-items: center;
 }
 
-/* Ganti dengan URL gambar hiasan cantik yang Anda inginkan */
 .decoration-container::before {
   content: '';
   background-image: url('elemen.png');
@@ -109,26 +108,25 @@ footer {
   bottom: 0;
 }
 
-/* Media queries for smaller screens */
 @media only screen and (max-width: 600px) {
   body {
     background: linear-gradient(135deg, #c850c0, #4158d0);
-    overflow-y: auto; /* Menambahkan kemampuan gulir vertikal pada body */
+    overflow-y: auto;
   }
 
   .login-container {
-    flex-direction: row; /* Tetap menggunakan flex-direction row seperti pada desktop */
-    width: 90%; /* Mengubah lebar menjadi 100% agar sesuai dengan layar kecil */
+    flex-direction: row;
+    width: 90%;
     padding: 20px;
-    overflow-x: auto; /* Menambahkan kemampuan gulir horizontal pada .login-container jika diperlukan */
+    overflow-x: auto;
   }
 
   .decoration-container::before {
-    display: block; /* Menampilkan elemen dekorasi */
+    display: block;
   }
 
   .logo,
   .logo2 {
-    display: none; /* Menampilkan logo dan logo2 */
+    display: none;
   }
 }

@@ -43,7 +43,7 @@
         </div>
     </div>
     <footer>
-        &copy; 2023 Smart Class Kelompok 3
+        &copy; 2023 Smart Class Group 3
     </footer>
 </x-app-layout>
 

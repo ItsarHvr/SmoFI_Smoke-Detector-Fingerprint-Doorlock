@@ -55,7 +55,7 @@
                 </div>
             </form>
 
-            <p style="text-align: center; margin-top: 20px;">Already registered? <a href="{{ route('login') }}">Sign in</a></p>
+            <p style="text-align: center; margin-top: 20px;">Sudah terdaftar? <a href="{{ route('login') }}">Masuk di sini</a></p>
         </div>
     </div>
 </body>

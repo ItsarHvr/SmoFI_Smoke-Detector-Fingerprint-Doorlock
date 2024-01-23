@@ -17,10 +17,10 @@
         <thead>
             <tr>
                 <th>Nama</th>
-                <th>ID Fingerprint</th>
-                <th>Tanggal</th>
-                <th>Waktu</th>
-                <th>Keterangan</th>
+                <th>Fingerprint ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Information</th>
             </tr>
         </thead>
         <tbody id="logAccessTableBody" data-current-page="{{ $logAccesses->currentPage() }}" data-total-pages="{{ $logAccesses->lastPage() }}">
@@ -129,7 +129,7 @@ function addPageNumber(paginate) {
 
         const link = document.createElement('a');
         link.className = 'page-link';
-        link.href = `/logs?page=${i}`; // Sesuaikan dengan URL yang benar
+        link.href = `/logs?page=${i}`;
         link.textContent = i;
 
         listItem.appendChild(link);
@@ -160,7 +160,6 @@ function addLogAccessToNextPage(logAccess) {
     const logAccessTableBody = document.getElementById('logAccessTableBody');
     const numRowsPerPage = 15;
 
-    // Tambahkan baris baru
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
         <td>${logAccess.user_name}</td>
@@ -174,15 +173,11 @@ function addLogAccessToNextPage(logAccess) {
 
     const currentRowCount = logAccessTableBody.children.length;
 
-    // Cek jika halaman penuh setelah penambahan baris baru
     if (currentRowCount % numRowsPerPage === 0) {
-        // Perbarui totalPages
         totalPages++;
 
-        // Tambahkan nomor halaman pada halaman berikutnya
         addPageNumber(totalPages);
 
-        // Log the data to the console
         console.log('Halaman terakhir penuh. Tambahkan nomor halaman berikutnya. Data:', logAccess);
     }
 }

@@ -1,5 +1,5 @@
 body {
-    text-align: center; /* Center-align the content within the body */
+    text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #c850c0, #4158d0);
     display: flex;
@@ -11,8 +11,8 @@ body {
 
 .container {
     margin-top: 10px;
-    display: inline-block; /* Center-align the block element */
-    text-align: left; /* Reset text-align for child elements */
+    display: inline-block;
+    text-align: left;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
@@ -60,7 +60,7 @@ p {
 button {
     background-color: rgb(193, 89, 207);
     color: #fff;
-    width: 200px; /* Adjusted width for better appearance */
+    width: 200px;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -68,7 +68,7 @@ button {
     font-size: 16px;
     transition: background-color 0.3s;
     position: relative;
-    margin: 10px 0; /* Added margin for better spacing */
+    margin: 10px 0;
 }
 
 

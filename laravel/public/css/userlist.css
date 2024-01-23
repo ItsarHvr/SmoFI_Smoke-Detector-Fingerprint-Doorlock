@@ -23,7 +23,6 @@ h1 {
     color: #333;
 }
 
-/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -41,20 +40,17 @@ th {
     background-color: #f2f2f2;
 }
 
-/* Pagination Styles */
 .pagination {
     margin-top: 20px;
     display: flex;
     justify-content: center;
 }
 
-/* Scroll Container Styles */
 .scroll-container {
     max-height: 400px;
     overflow-y: auto;
 }
 
-/* Custom Pagination Styles */
 .custom-pagination {
     display: flex;
     justify-content: center;
@@ -80,11 +76,10 @@ th {
     color: #fff;
 }
 
-/* Responsive Styles for Screens < 767px */
 @media only screen and (max-width: 767px) {
     .container {
         width: 90%;
-        overflow-y: auto; /* Tambahkan overflow-y untuk scroll vertikal */
+        overflow-y: auto;
     }
 
     table {
