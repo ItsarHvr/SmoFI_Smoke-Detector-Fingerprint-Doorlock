@@ -204,9 +204,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
     if(statusRelay == 0){
       relayState = LOW;
       digitalWrite(relay1, HIGH);
+      displayWaitFinger();
     }else{
       relayState = HIGH;
       digitalWrite(relay1, LOW);
+      displayFingerOK();
     }
     
   }else if (strcmp(topic, topic4) == 0) {
