@@ -83,7 +83,11 @@ use App\Http\Controllers\TestController;
 Route::get('/test-log-access', [TestController::class, 'testLogAccess']);
 
 Route::get('/send-smoke', function(){
-    $text = 2000;
+    $text = [
+        'gas_value' => '400',
+        'status' => 'Gas Not Detected',
+        'created_at' => '2024-01-17',
+    ];
     broadcast(new \App\Events\SmokeEvent($text));
 });
 
