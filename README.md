@@ -34,7 +34,7 @@
 
 ## 🔌 IoT Device Setup (Block Diagram)
 
-![block_diagram](https://raw.githubusercontent.com/ItsarHvr/SmoFI_Smoke-Detector-Fingerprint-Doorlock/main/471b01cef42ce5f67f2caa885f0cf8c0e4ab55bf/web_view/block_diagram.png)
+![block_diagram](https://github.com/ItsarHvr/SmoFI_Smoke-Detector-Fingerprint-Doorlock/blob/471b01cef42ce5f67f2caa885f0cf8c0e4ab55bf/web_view/block_diagram.png)
 
 ---
 
